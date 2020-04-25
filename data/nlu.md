@@ -12,6 +12,26 @@
 - sounds really good
 - appreciate that
 - yes, please.
+- alright
+- ok send it.
+- yes sure.
+- ok, send it.
+
+## intent:deny
+- no
+- nope
+- nah
+- naah
+- nada
+- that's wrong
+- not ok
+- don't
+- do not
+- doesn't
+- does not
+- sounds really bad
+- not
+- don't send email
 
 ## intent:thank
 - thanks
@@ -19,6 +39,13 @@
 - Thank you
 - thanks a lot
 - Thank you.
+- Thanks
+- Thank you so much.
+- Thank you bot
+- thank you buddy
+- thank you
+- thank you so much.
+- thanks, bye.
 
 ## intent:goodbye
 - bye
@@ -42,6 +69,8 @@
 - good morning
 - good evening
 - dear sir
+- hey bot
+- Hi
 
 ## intent:restaurant_search
 - i'm looking for a place to eat
@@ -94,17 +123,165 @@
 - [High](price:high)
 - find me a place to eat
 - [Lucknow](location)
-- [North Indian](cuisine)
-- [Low](price:low)
-
-## intent:unknown
-- Could you help me in filing taxes
+- get me a restaurant with price range [<300](price:low)
+- [warangal](location)
+- find me a restaurant
+- I'm in [Nagpur](location).
+- [Andhra](cuisine)
+- [>700](price:high)
+- get me a [low end](price:low) restaurant
+- [Sangli](location)
+- I'd like to have [Asian](cuisine)
+- find me a restaurant in [Agra](location)
+- I'd like to eat [Arabian](cuisine)
+- hi, get me a restaurant in [Ajmer](location).
+- [Awadhi](cuisine) seems good for tonight.
+- [<300](price:low)
+- search me a good restaurant for [6 people](people)
+- I'd like to get a restaurant in [aligarh](location)
+- [I'd](cuisine:BBQ) like to have BBQ
+- [I'd like](price:high) a high end restaurant
+- find me a [bakery](cuisine)
+- please find in [Aligarh](location)
+- find me a good restaurant for [7 people](people)
+- [Amravati](location)
+- [Bengali](cuisine)
+- find me a restaurant to eat [Burger](cuisine)
+- in [Belgaum](location)
+- [3 people](people)
+- hello, I want to eat a [burger](cuisine)
+- [Nellor](location)
+- just [1](people)
+- hi there, could you please find me a restaurant
+- [Hamirpur](location)
+- [9 people](people)
+- [Desserts](cuisine)
+- hi, find me a [cafe](cuisine) please
+- [Jammu](location)
+- [3 persons](people)
+- [Ahmedabad](location)
+- [Bangalore](location)
+- [Chennai](location)
+- [Delhi](location)
+- [Hyderabad](location)
+- [Kolkata](location)
+- [Mumbai](location)
+- [Pune](location)
+- [Agra](location)
+- [Ajmer](location)
+- [Aligarh](location)
+- [Amritsar](location)
+- [Asansol](location)
+- [Aurangabad](location)
+- [Bareilly](location)
+- [Belgaum](location)
+- [Bhavnagar](location)
+- [Bhiwandi](location)
+- [Bhopal](location)
+- [Bhubaneswar](location)
+- [Bikaner](location)
+- [Bilaspur](location)
+- [Bokaro Steel City](location)
+- [Chandigarh](location)
+- [Coimbatore](location)
+- [Cuttack](location)
+- [Dehradun](location)
+- [Dhanbad](location)
+- [Bhilai](location)
+- [Durgapur](location)
+- [Erode](location)
+- [Faridabad](location)
+- [Firozabad](location)
+- [Ghaziabad](location)
+- [Gorakhpur](location)
+- [Gulbarga](location)
+- [Guntur](location)
+- [Gwalior](location)
+- [Gurgaon](location)
+- [Guwahati](location)
+- [Hubli–Dharwad](location)
+- [Indore](location)
+- [Jabalpur](location)
+- [Jaipur](location)
+- [Jalandhar](location)
+- [Jamnagar](location)
+- [Jamshedpur](location)
+- [Jhansi](location)
+- [Jodhpur](location)
+- [Kakinada](location)
+- [Kannur](location)
+- [Kanpur](location)
+- [Kochi](location)
+- [Kolhapur](location)
+- [Kollam](location)
+- [Kozhikode](location)
+- [Kurnool](location)
+- [Ludhiana](location)
+- [Madurai](location)
+- [Malappuram](location)
+- [Mathura](location)
+- [Goa](location)
+- [Mangalore](location)
+- [Meerut](location)
+- [Moradabad](location)
+- [Mysore](location)
+- [Nagpur](location)
+- [Nanded](location)
+- [Nashik](location)
+- [Nellore](location)
+- [Noida](location)
+- [Patna](location)
+- [Pondicherry](location)
+- [Purulia Prayagraj](location)
+- [Raipur](location)
+- [Rajkot](location)
+- [Rajahmundry](location)
+- [Ranchi](location)
+- [Rourkela](location)
+- [Salem](location)
+- [Shimla](location)
+- [Siliguri](location)
+- [Solapur](location)
+- [Srinagar](location)
+- [Surat](location)
+- [Thiruvananthapuram](location)
+- [Thrissur](location)
+- [Tiruchirappalli](location)
+- [Tiruppur](location)
+- [Ujjain](location)
+- [Bijapur](location)
+- [Vadodara](location)
+- [Varanasi](location)
+- [Vasai-Virar City](location)
+- [Vijayawada](location)
+- [Visakhapatnam](location)
+- [Vellore](location)
+- find me a restaurant in [Vadodara](location)
+- Give me something [arabian](cuisine)
+- [8 persons](people)
+- get me a restuarant with [Australian](cuisine) food
+- I am in [Kannur](location)
+- find me a [high end](price:high) restaurant
+- we are [5 persons](people)
 
 ## intent:send_email
 - [a.t@gmail.com](email)
+- [apz@reddit.com](email)
+- [someone@gmail.com](email)
+- ofcourse, it is [qwerty@poiu.com](email)
+- yes, send it to [adt@gmail.com](email)
+- my email is [chopper@hotmail.com](email)
+- My email would be [huejazz@something.com](email)
+- please mail me at [popo@xyz.com](email)
+- [popup@somnewemail.com](email)
+- yes, send it to [someone@mailbox.com](email)
+- yes, it is [new_email@gmail.com](email)
 
 ## synonym:4
 - four
+
+## synonym:BBQ
+- I'd
 
 ## synonym:Chennai
 - Madras
@@ -123,9 +300,14 @@
 
 ## synonym:high
 - High
+- >700
+- I'd like
+- high end
 
 ## synonym:low
 - Low
+- <300
+- low end
 
 ## synonym:mid
 - moderate
@@ -140,3 +322,6 @@
 
 ## regex:pincode
 - [0-9]{6}
+
+## regex:send_email
+- [^\s]*[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+[^\s]*
