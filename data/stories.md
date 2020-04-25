@@ -172,6 +172,7 @@
 * restaurant_search{"price": "low"}
     - slot{"price": "low"}
     - action_search_restaurants
+    - slot{"location": "Lucknow"}
     - utter_ask_email_permission
 * affirm
     - utter_ask_email
