@@ -116,16 +116,3 @@
 * affirm
     - utter_goodbye
 
-
-## interactive_story_1
-* greet
-    - utter_greet
-* restaurant_search{"cuisine": "chinese"}
-    - slot{"cuisine": "chinese"}
-    - utter_ask_location
-* restaurant_search{"location": "delhi"}
-    - slot{"location": "delhi"}
-    - action_search_restaurants
-    - slot{"location": "delhi"}
-* affirm
-    - utter_goodbye
