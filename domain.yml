@@ -1,6 +1,7 @@
 actions:
 - action_search_restaurants
 - action_send_email
+- utter_acknowledgement
 - utter_ask_cuisine
 - utter_ask_email
 - utter_ask_email_permission
@@ -19,15 +20,18 @@ entities:
 - people
 - price
 intents:
-- send_email
 - restaurant_search
-- thank
 - affirm
 - greet
+- send_email
+- thank
+- deny
 - unknown
 - goodbye
 - stop
 responses:
+  utter_acknowledgement:
+  - text: alright, gotchya.
   utter_ask_cuisine:
   - buttons:
     - payload: Chinese
@@ -59,6 +63,11 @@ responses:
   - text: I can help you finding restaurants if you tell me the location.
   - text: what location are you looking at ?
   - text: can I know the location please ?
+  utter_ask_numberofpeople:
+  - text: How many people are you expecting to join ?
+  - text: What would be the number of friends joining you ?
+  - text: How many people ?
+  - text: How many persons ?
   utter_ask_price:
   - buttons:
     - payload: Low
@@ -98,7 +107,7 @@ slots:
     type: text
   location:
     type: text
+  people:
+    type: text
   price:
     type: text
-  send_email:
-    type: bool
