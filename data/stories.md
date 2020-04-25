@@ -116,3 +116,67 @@
 * affirm
     - utter_goodbye
 
+
+## interactive_story_1
+* greet
+    - utter_greet
+* unknown
+    - utter_default
+* restaurant_search
+    - utter_ask_location
+* restaurant_search{"location": "Chennai"}
+    - slot{"location": "Chennai"}
+    - utter_ask_cuisine
+* restaurant_search{"cuisine": "Italian"}
+    - slot{"cuisine": "Italian"}
+    - action_search_restaurants
+    - slot{"location": "Chennai"}
+
+## interactive_story_1
+* greet
+    - utter_greet
+* restaurant_search{"location": "Pune"}
+    - slot{"location": "Pune"}
+    - utter_ask_cuisine
+* restaurant_search{"cuisine": "South Indian"}
+    - slot{"cuisine": "South Indian"}
+    - action_search_restaurants
+    - slot{"location": "Pune"}
+* affirm
+    - utter_goodbye
+
+## interactive_story_1
+* greet
+    - utter_greet
+* restaurant_search
+    - utter_ask_location
+* restaurant_search{"location": "agra"}
+    - slot{"location": "agra"}
+    - utter_ask_cuisine
+* restaurant_search{"cuisine": "Italian"}
+    - slot{"cuisine": "Italian"}
+    - action_search_restaurants
+    - slot{"location": "agra"}
+
+## interactive_story_1
+* greet
+    - utter_greet
+* restaurant_search
+    - utter_ask_location
+* restaurant_search{"location": "Lucknow"}
+    - slot{"location": "Lucknow"}
+    - utter_ask_cuisine
+* restaurant_search{"cuisine": "North Indian"}
+    - slot{"cuisine": "North Indian"}
+    - utter_ask_price
+* restaurant_search{"price": "low"}
+    - slot{"price": "low"}
+    - action_search_restaurants
+    - utter_ask_email_permission
+* affirm
+    - utter_ask_email
+* send_email{"email": "a.t@gmail.com"}
+    - slot{"email": "a.t@gmail.com"}
+    - action_send_email
+* thank
+    - utter_welcome

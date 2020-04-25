@@ -10,7 +10,15 @@
 - correct
 - great choice
 - sounds really good
+- appreciate that
+- yes, please.
+
+## intent:thank
 - thanks
+- Thanks.
+- Thank you
+- thanks a lot
+- Thank you.
 
 ## intent:goodbye
 - bye
@@ -23,6 +31,9 @@
 - have a good one
 
 ## intent:greet
+- yo
+- hola
+- hi there
 - hey
 - howdy
 - hey there
@@ -70,24 +81,55 @@
 - please show me a few [italian](cuisine) restaurants in [bangalore](location)
 - search me some restaurants
 - search in [delhi](location)
-- [South Indian](cuisine)
+- I need a to book a restaurant
+- search in [Chennai](location)
+- I am hungry and looking for places to eat in [Pune](location)
+- find me some place to eat
+- get me something in [agra](location)
+- search me a place to eat tonight
+- Find me something in [shimla](location)
+- [Afghan](cuisine)
+- [Low](price:low)
+- [Moderate](price:mid)
+- [High](price:high)
+- find me a place to eat
+- [Lucknow](location)
+- [North Indian](cuisine)
+- [Low](price:low)
+
+## intent:unknown
+- Could you help me in filing taxes
+
+## intent:send_email
+- [a.t@gmail.com](email)
 
 ## synonym:4
 - four
+
+## synonym:Chennai
+- Madras
 
 ## synonym:Delhi
 - New Delhi
 
 ## synonym:bangalore
 - Bengaluru
+- Bangalore
 
 ## synonym:chinese
 - chines
 - Chinese
 - Chines
 
+## synonym:high
+- High
+
+## synonym:low
+- Low
+
 ## synonym:mid
 - moderate
+- Moderate
 
 ## synonym:vegetarian
 - veggie
