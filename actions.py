@@ -12,6 +12,7 @@ from email.message import EmailMessage
 import smtplib
 
 restaurant_email_list = []
+meal_estimate = {}
 
 class ActionSearchRestaurants(Action):
 	def name(self):
@@ -51,7 +52,7 @@ class ActionSearchRestaurants(Action):
                 int(single_restaurant['restaurant']['average_cost_for_two']) < cost_max))]
             # Sort the results according to the restaurant's rating
 		    budget_dictionary_rating_sorted = sorted(
-                budget_dictionary, key=lambda k: k['restaurant']['user_rating']['aggregate_rating'], reverse=True)
+                budget_dictionary, key=lambda k: float(k['restaurant']['user_rating']['aggregate_rating']), reverse=True)
 
             # Build the response
 		    response = ""
@@ -71,7 +72,7 @@ class ActionSearchRestaurants(Action):
                         " has been rated " + \
                         restaurant['restaurant']['user_rating']['aggregate_rating'] + "\n" + "\n"
 		        dispatcher.utter_message("Here are our picks !"+ "\n ==================================================== \n" + response + "\n ==================================================== \n \n")
-		return [SlotSet('location', location), SlotSet('restaurant_exist', restaurant_exist)]
+		return [SlotSet('restaurant_exist', restaurant_exist)]
     
 	def get_additional_location_details(self, location, zomato):
         # Get location details including latitude and longitude
@@ -104,8 +105,8 @@ class VerifyLocation(Action):
     def __init__(self):
         self.TIER_1 = ['ahmedabad', 'bangalore', 'chennai',
                        'delhi', 'hyderabad', 'kolkata', 'mumbai', 'pune']
-        self.TIER_2 = ['agra', 'ajmer', 'aligarh', 'allahabad', 'amravati', 'amritsar', 'asansol', 'aurangabad', 'bareilly', 'belgaum', 'bhavnagar', 'bhiwandi', 'bhopal', 'bhubaneswar', 'bikaner', 'bokaro steel city', 'chandigarh', 'coimbatore', 'cuttack', 'dehradun', 'dhanbad', 'durg-bhilai nagar', 'durgapur', 'erode', 'faridabad', 'firozabad', 'ghaziabad', 'gorakhpur', 'gulbarga', 'guntur', 'gurgaon', 'guwahati', 'gwalior', 'hubli-dharwad', 'indore', 'jabalpur', 'jaipur', 'jalandhar', 'jammu', 'jamnagar', 'jamshedpur', 'jhansi', 'jodhpur', 'kannur', 'kanpur', 'kakinada', 'kochi',
-                       'kottayam', 'kolhapur', 'kollam', 'kota', 'kozhikode', 'kurnool', 'lucknow', 'ludhiana', 'madurai', 'malappuram', 'mathura', 'goa', 'mangalore', 'meerut', 'moradabad', 'mysore', 'nagpur', 'nanded', 'nashik', 'nellore', 'noida', 'palakkad', 'patna', 'pondicherry', 'raipur', 'rajkot', 'rajahmundry', 'ranchi', 'rourkela', 'salem', 'sangli', 'siliguri', 'solapur', 'srinagar', 'sultanpur', 'surat', 'thiruvananthapuram', 'thrissur', 'tiruchirappalli', 'tirunelveli', 'tiruppur', 'ujjain', 'vijayapura', 'vadodara', 'varanasi', 'vasai-virar city', 'vijayawada', 'visakhapatnam', 'warangal']
+        self.TIER_2 = ['agra', 'ajmer', 'aligarh', 'allahabad', 'amravati', 'amritsar', 'asansol', 'aurangabad', 'bareilly', 'belgaum', 'bhavnagar', 'bhiwandi', 'bhopal', 'bhubaneswar', 'bikaner', 'bokaro steel city', 'chandigarh', 'coimbatore', 'cuttack', 'dehradun', 'dhanbad', 'durg-bhilai nagar', 'durgapur', 'erode', 'faridabad', 'firozabad', 'ghaziabad', 'gorakhpur', 'gulbarga', 'guntur', 'gurgaon', 'guwahati', 'gwalior', 'hubli','dharwad', 'indore', 'jabalpur', 'jaipur', 'jalandhar', 'jammu', 'jamnagar', 'jamshedpur', 'jhansi', 'jodhpur', 'kannur', 'kanpur', 'kakinada', 'kochi',
+                       'kottayam', 'kolhapur', 'kollam', 'kota', 'kozhikode', 'kurnool', 'lucknow', 'ludhiana', 'madurai', 'malappuram', 'mathura', 'goa', 'mangalore', 'meerut', 'moradabad', 'mysore', 'nagpur', 'nanded', 'nashik', 'nellore', 'noida', 'palakkad', 'patna', 'pondicherry', 'raipur', 'rajkot', 'rajahmundry', 'ranchi', 'rourkela', 'salem', 'sangli', 'siliguri', 'solapur', 'srinagar', 'sultanpur', 'surat', 'thiruvananthapuram', 'thrissur', 'tiruchirappalli', 'tirunelveli', 'tiruppur', 'ujjain', 'vijayapura', 'vadodara', 'varanasi', 'vasai', 'virar', 'vijayawada', 'visakhapatnam', 'warangal']
     def name(self):
         return "actions_VerifyLocation"
     
@@ -116,7 +117,7 @@ class VerifyLocation(Action):
                 "We do not operate in " + location + " yet. Please try some other city.")
             return [SlotSet('location', None), SlotSet("location_ok", False)]
         else:
-            return [SlotSet('location', location), SlotSet("location_ok", True)]
+            return [SlotSet("location_ok", True)]
 
     def verify_location(self, location):
         return location.lower() in self.TIER_1 or location.lower() in self.TIER_2
@@ -147,7 +148,7 @@ class VerifyBudget(Action):
         min_dict = [0, 300, 700]
         max_dict = [300, 700]
         if cost_min in min_dict and (cost_max in max_dict or cost_max > 700):
-            return [SlotSet('price', budget_criteria), SlotSet('budget_ok', True)]
+            return [SlotSet('budget_ok', True)]
         else:
             dispatcher.utter_message(error_msg)
             return [SlotSet('price', None), SlotSet('budget_ok', False)]
@@ -167,10 +168,30 @@ class VerifyCuisine(Action):
             dispatcher.utter_message(error_msg)
             return [SlotSet('cuisine', None), SlotSet('cuisine_ok', False)]
         if cuisine in cuisines:
-            return [SlotSet('cuisine', cuisine), SlotSet('cuisine_ok', True)]
+            return [SlotSet('cuisine_ok', True)]
         else:
             dispatcher.utter_message(error_msg)
             return [SlotSet('cuisine', None), SlotSet('cuisine_ok', False)]
+        
+class ActionCalculateMealEstimate(Action):
+    def name(self):
+        return 'action_calculate_estimate'
+        
+    def run(self, dispatcher, tracker, domain):
+        global meal_estimate
+        # Get user's email id
+        people = int(tracker.get_slot('people').split(' ')[0])
+        for restaurant in restaurant_email_list:
+            restaurant_id = restaurant['restaurant']['id']
+            try:
+                if(people>1):
+                    meal_estimate[restaurant_id] = restaurant['restaurant']['average_cost_for_two']*people
+                    dispatcher.utter_message('your meal at '+ restaurant['restaurant']['name'] +' would cost approx. '+str(meal_estimate[restaurant_id]))
+                else:
+                    meal_estimate[restaurant_id] = restaurant['restaurant']['average_cost_for_two']/2
+            except:
+                meal_estimate[restaurant_id] = -1
+        return[]
         
 class ActionSendEmail(Action):
     def name(self):
@@ -183,12 +204,21 @@ class ActionSendEmail(Action):
         # Get location and cuisines to put in the email
         location = tracker.get_slot('location')
         cuisine = tracker.get_slot('cuisine')
-        global restaurant_email_list
+        people = tracker.get_slot('people').split(' ')[0]
+        global restaurant_email_list, meal_estimate
         # Construct the email 'subject' and the contents.
         email_subject_line = "You requested some " + cuisine.capitalize() + " restaurants in " + str(location).capitalize()
-        email_message_content = "Hello "+ to_email.split('@')[0] +", Here are the top " + str(len(restaurant_email_list)) + cuisine.capitalize() + " restaurants in " + str(location).capitalize() + "." + "\n \n"
-        for restaurant in restaurant_email_list:
-            email_message_content = email_message_content + restaurant['restaurant']['name']+ " in "+ restaurant['restaurant']['location']['address']+" has been rated " + restaurant['restaurant']['user_rating']['aggregate_rating'] + "\n" +"\n"
+        email_message_content = "Hello "+ to_email.split('@')[0] +",\n Here are the top " + str(len(restaurant_email_list)) + ' ' + cuisine.capitalize() + " restaurants in " + str(location).capitalize() + ". \n \n"
+        for index,restaurant in enumerate(restaurant_email_list):
+            email_message_content += str(index+1) + ". "+ restaurant['restaurant']['name'] + "\n"
+            email_message_content += "\t Address : "+ restaurant['restaurant']['location']['address'] + ". \n \t Click this link to go to the location on maps : https://www.google.com/maps/@"+restaurant['restaurant']['location']['latitude']+','+restaurant['restaurant']['location']['longitude']+',15z \n'
+            email_message_content += "\t The ratings are : " + restaurant['restaurant']['user_rating']['aggregate_rating'] + "\n"
+            email_message_content += '\t Here the average cost for 2 people is '+restaurant['restaurant']['currency']+str(restaurant['restaurant']['average_cost_for_two'])+ '. \n'
+            if(meal_estimate[restaurant['restaurant']['id']]>0):
+                email_message_content += '\t As per our chat you were going out with '+people+' people. So you\'ll be spending around '+ restaurant['restaurant']['currency'] + str(meal_estimate[restaurant['restaurant']['id']]) +'.'
+            else:
+                email_message_content += '\t Due to some reason we were not able to calculate the estimates for ' +people+ ' people.'
+        email_message_content = email_message_content+ '\n \n Please do let us know of your feedback by replying to this mail.\n'
 
         # Open SMTP connection to our email id.
         gmail_smtp = smtplib.SMTP("smtp.gmail.com", 587)
