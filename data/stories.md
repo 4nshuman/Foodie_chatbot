@@ -509,3 +509,111 @@
 * send_email{"email": "new_email@gmail.com"}
     - slot{"email": "new_email@gmail.com"}
     - action_send_email
+
+## interactive_story_1
+* greet
+    - utter_greet
+* restaurant_search{"location": "Mysore"}
+    - slot{"location": "Mysore"}
+    - utter_ask_cuisine
+* restaurant_search{"cuisine": "African"}
+    - slot{"cuisine": "African"}
+    - utter_ask_price
+* restaurant_search{"price": "low"}
+    - slot{"price": "low"}
+    - utter_ask_numberofpeople
+* restaurant_search{"people": "10 people"}
+    - slot{"people": "10 people"}
+    - action_search_restaurants
+    - slot{"location": "Mysore"}
+    - utter_ask_email_permission
+* deny
+    - utter_acknowledgement
+* greet
+    - utter_greet
+* greet
+    - utter_ask_howcanhelp
+* restaurant_search{"location": "Aligarh"}
+    - slot{"location": "Aligarh"}
+    - utter_ask_cuisine
+* restaurant_search{"cuisine": "Mughlai"}
+    - slot{"cuisine": "Mughlai"}
+    - utter_ask_price
+* restaurant_search{"price": "mid"}
+    - slot{"price": "mid"}
+    - utter_ask_numberofpeople
+* restaurant_search{"people": "14 friends"}
+    - slot{"people": "14 friends"}
+    - action_search_restaurants
+    - slot{"location": "Aligarh"}
+    - utter_ask_email_permission
+* affirm
+    - utter_ask_email
+* send_email{"email": "myemail01.new@gmail.com"}
+    - slot{"email": "myemail01.new@gmail.com"}
+    - action_send_email
+* thank
+    - utter_welcome
+* greet
+    - utter_greet
+* greet
+    - utter_ask_howcanhelp
+
+## interactive_story_1
+* greet
+    - utter_greet
+* restaurant_search
+    - utter_ask_location
+* restaurant_search{"location": "bilaspur"}
+    - slot{"location": "bilaspur"}
+    - utter_ask_cuisine
+* restaurant_search{"cuisine": "Italian"}
+    - slot{"cuisine": "Italian"}
+    - utter_ask_price
+* restaurant_search{"price": "high"}
+    - slot{"price": "high"}
+    - utter_ask_numberofpeople
+* restaurant_search{"people": "19 people"}
+    - slot{"people": "19 people"}
+    - action_search_restaurants
+    - utter_ask_email_permission
+* send_email{"email": "some12_.thing@someotherthing.com"}
+    - slot{"email": "some12_.thing@someotherthing.com"}
+    - action_send_email
+* thank
+    - utter_welcome
+
+## interactive_story_1
+* greet
+    - utter_greet
+* restaurant_search{"price": "high"}
+    - slot{"price": "high"}
+    - utter_ask_location
+* restaurant_search{"location": "Bhiwandi"}
+    - slot{"location": "Bhiwandi"}
+    - utter_ask_cuisine
+* restaurant_search{"cuisine": "chinese"}
+    - slot{"cuisine": "chinese"}
+    - utter_ask_numberofpeople
+* restaurant_search{"people": "5 people"}
+    - slot{"people": "5 people"}
+    - action_search_restaurants
+    - utter_ask_email_permission
+* deny
+    - utter_acknowledgement
+* thank
+    - utter_welcome
+
+## interactive_story_1
+* restaurant_search{"price": "low", "cuisine": "arabian", "location": "Bhilai", "people": "5 people"}
+    - slot{"cuisine": "arabian"}
+    - slot{"location": "Bhilai"}
+    - slot{"people": "5 people"}
+    - slot{"price": "low"}
+    - action_search_restaurants
+    - utter_ask_email_permission
+* send_email{"email": "someemail123@sommailbox.com"}
+    - slot{"email": "someemail123@sommailbox.com"}
+    - action_send_email
+* thank
+    - utter_welcome

@@ -21,11 +21,11 @@ entities:
 - price
 intents:
 - restaurant_search
-- affirm
-- greet
-- send_email
 - thank
+- send_email
 - deny
+- greet
+- affirm
 - unknown
 - goodbye
 - stop
@@ -63,6 +63,7 @@ responses:
   - text: I can help you finding restaurants if you tell me the location.
   - text: what location are you looking at ?
   - text: can I know the location please ?
+  - text: which location do you prefer ?
   utter_ask_numberofpeople:
   - text: How many people are you expecting to join ?
   - text: What would be the number of friends joining you ?
@@ -75,7 +76,7 @@ responses:
     - payload: Moderate
       title: Rs. 300 to 700
     - payload: High
-      title: More than 300
+      title: More than 700
     text: what is the expenditure(for 2 person) that we are looking at ?
   utter_default:
   - text: I am sorry, cannot help you with that, as of now I am just a restaurant
@@ -111,3 +112,6 @@ slots:
     type: text
   price:
     type: text
+  restaurant_exist:
+      type: bool
+      initial_value: False

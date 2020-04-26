@@ -16,6 +16,7 @@
 - ok send it.
 - yes sure.
 - ok, send it.
+- that sounds good
 
 ## intent:deny
 - no
@@ -32,6 +33,8 @@
 - sounds really bad
 - not
 - don't send email
+- not really
+- no, don;t
 
 ## intent:thank
 - thanks
@@ -71,6 +74,7 @@
 - dear sir
 - hey bot
 - Hi
+- hello there
 
 ## intent:restaurant_search
 - i'm looking for a place to eat
@@ -263,6 +267,18 @@
 - I am in [Kannur](location)
 - find me a [high end](price:high) restaurant
 - we are [5 persons](people)
+- get me a list of some restaurants in [Mysore](location)
+- get me something [African](cuisine)
+- around [10 people](people)
+- you can find me some restaurants in [Aligarh](location)
+- [Mughlai](cuisine)
+- [14 friends](people)
+- in [bilaspur](location)
+- [19 people](people) are going to join.
+- find me a good [high end](price:high) restaurant
+- I'm looking at [Bhiwandi](location)
+- get me a restaurant for [5 people](people)
+- search me a [low end](price:low) [arabian](cuisine) restaurant in [Bhilai](location) for [5 people](people)
 
 ## intent:send_email
 - [a.t@gmail.com](email)
@@ -276,6 +292,9 @@
 - [popup@somnewemail.com](email)
 - yes, send it to [someone@mailbox.com](email)
 - yes, it is [new_email@gmail.com](email)
+- [myemail01.new@gmail.com](email)
+- yeah sure, my email ID is [some12_.thing@someotherthing.com](email)
+- yes send it to [someemail123@sommailbox.com](email)
 
 ## synonym:4
 - four
