@@ -8,6 +8,10 @@ import zomatopy
 import json
 from concurrent.futures import ThreadPoolExecutor
 import requests
+from email.message import EmailMessage
+import smtplib
+
+restaurant_email_list = []
 
 class ActionSearchRestaurants(Action):
 	def name(self):
@@ -17,7 +21,7 @@ class ActionSearchRestaurants(Action):
 		config={ "user_key":"5faeea4aac0526ad50539c0b87a5fd15"}
 		zomato = zomatopy.initialize_app(config)
 		# Get location from slot
-		loc = tracker.get_slot('location')
+		location = tracker.get_slot('location')
 
 		# Get cuisine from slot
 		cuisine = tracker.get_slot('cuisine')
@@ -33,44 +37,45 @@ class ActionSearchRestaurants(Action):
 		else:
 		    cost_min=700
         
-		results, lat, lon = self.get_additional_location_details(loc,zomato)
+		results, lat, lon = self.get_additional_location_details(location,zomato)
 
 		if (results == 0):
 		    # Zomato API could not find details for this location.
 		    restaurant_exist = False
-		    dispatcher.utter_message("Sorry, no results found in this location:("+ "\n")
+		    dispatcher.utter_message("I am sorry, no restaurants found in this location."+ "\n" + "Check the location name or try with a different location")
 		else:
-		    d_rest = self.get_restaurants(lat, lon, cost_min, cost_max, cuisine)
+		    restaurant_result_dictionary = self.get_restaurants(lat, lon, cost_min, cost_max, cuisine)
 
             # Filter the results based on budget
-		    d_budget = [d_rest_single for d_rest_single in d_rest if ((int(d_rest_single['restaurant']['average_cost_for_two']) > cost_min) & (
-                int(d_rest_single['restaurant']['average_cost_for_two']) < cost_max))]
+		    budget_dictionary = [single_restaurant for single_restaurant in restaurant_result_dictionary if ((int(single_restaurant['restaurant']['average_cost_for_two']) > cost_min) & (
+                int(single_restaurant['restaurant']['average_cost_for_two']) < cost_max))]
             # Sort the results according to the restaurant's rating
-		    d_budget_rating_sorted = sorted(
-                d_budget, key=lambda k: k['restaurant']['user_rating']['aggregate_rating'], reverse=True)
+		    budget_dictionary_rating_sorted = sorted(
+                budget_dictionary, key=lambda k: k['restaurant']['user_rating']['aggregate_rating'], reverse=True)
 
             # Build the response
 		    response = ""
 		    restaurant_exist = False
-		    if len(d_budget_rating_sorted) == 0:
-		        dispatcher.utter_message("Sorry, no results found :("+ "\n")
+		    if len(budget_dictionary_rating_sorted) == 0:
+		        dispatcher.utter_message("Sorry, no results found that would fit in the provided budget."+ "\n")
 		    else:
-                # Pick the top 5
-		        d_budget_rating_top5 = d_budget_rating_sorted[:5]
-		        global d_email_rest
-		        d_email_rest = d_budget_rating_sorted[:10]
-		        if(d_email_rest and len(d_email_rest) > 0):
+                # Pick top 5 to display in chat window
+		        budget_dictionary_rating_top5 = budget_dictionary_rating_sorted[:5]
+                # Pick top 10 to email to the user, if required
+		        global restaurant_email_list
+		        restaurant_email_list = budget_dictionary_rating_sorted[:10]
+		        if(restaurant_email_list and len(restaurant_email_list) > 0):
 		            restaurant_exist = True
-		        for restaurant in d_budget_rating_top5:
+		        for restaurant in budget_dictionary_rating_top5:
 		            response = response + restaurant['restaurant']['name'] + " in " + restaurant['restaurant']['location']['address'] + \
                         " has been rated " + \
                         restaurant['restaurant']['user_rating']['aggregate_rating'] + "\n" + "\n"
-		        dispatcher.utter_message("Here are our picks!"+ "\n" + response)
-		return [SlotSet('location', loc), SlotSet('restaurant_exist', restaurant_exist)]
+		        dispatcher.utter_message("Here are our picks !"+ "\n ==================================================== \n" + response + "\n ==================================================== \n \n")
+		return [SlotSet('location', location), SlotSet('restaurant_exist', restaurant_exist)]
     
-	def get_additional_location_details(self, loc, zomato):
+	def get_additional_location_details(self, location, zomato):
         # Get location details including latitude and longitude
-	    location_detail = zomato.get_location(loc, 1)
+	    location_detail = zomato.get_location(location, 1)
 	    d1 = json.loads(location_detail)
 	    lat = 0
 	    lon = 0
@@ -83,12 +88,13 @@ class ActionSearchRestaurants(Action):
 	def get_restaurants(self, lat, lon, budgetmin, budgetmax , cuisine):
 	    cuisines_dict = {'american': 1, 'bakery':5, 'biryani':7, 'chinese': 25, 'italian': 55, 'cafe':30,
                          'mexican': 73, 'north indian': 50, 'south indian': 85}
-	    d_rest = []
+	    restaurant_result_dictionary = []
 	    executer = ThreadPoolExecutor(max_workers=10)
+        # Since the API allows to fetch 20 results at a time, we're gonna repeat the fetch to get 100 records
 	    for res_key in range(0, 101, 20):
-	        executer.submit(retrieve_restaurant, lat, lon, cuisines_dict, cuisine, res_key, d_rest)
+	        executer.submit(retrieve_restaurant, lat, lon, cuisines_dict, cuisine, res_key, restaurant_result_dictionary)
 	    executer.shutdown()
-	    return d_rest
+	    return restaurant_result_dictionary
     
 class VerifyLocation(Action):
 
@@ -104,16 +110,16 @@ class VerifyLocation(Action):
         return "actions_VerifyLocation"
     
     def run(self, dispatcher, tracker, domain):
-        loc = tracker.get_slot('location')
-        if not (self.verify_location(loc)):
+        location = tracker.get_slot('location')
+        if not (self.verify_location(location)):
             dispatcher.utter_message(
-                "We do not operate in " + loc + " yet. Please try some other city.")
+                "We do not operate in " + location + " yet. Please try some other city.")
             return [SlotSet('location', None), SlotSet("location_ok", False)]
         else:
-            return [SlotSet('location', loc), SlotSet("location_ok", True)]
+            return [SlotSet('location', location), SlotSet("location_ok", True)]
 
-    def verify_location(self, loc):
-        return loc.lower() in self.TIER_1 or loc.lower() in self.TIER_2
+    def verify_location(self, location):
+        return location.lower() in self.TIER_1 or location.lower() in self.TIER_2
 
 class VerifyBudget(Action):
 
@@ -152,7 +158,7 @@ class VerifyCuisine(Action):
         return "actions_VerifyCuisine"
 
     def run(self, dispatcher, tracker, domain):
-        cuisines = ['chinese','mexican','italian','american','south indian','north indian']
+        cuisines = ['bakery','biryani','cafe','chinese','mexican','italian','american','south indian','north indian']
         error_msg = "Sorry!! The cuisine is not supported. Please re-enter."
         cuisine = tracker.get_slot('cuisine')
         try:
@@ -165,46 +171,54 @@ class VerifyCuisine(Action):
         else:
             dispatcher.utter_message(error_msg)
             return [SlotSet('cuisine', None), SlotSet('cuisine_ok', False)]
+        
+class ActionSendEmail(Action):
+    def name(self):
+        return 'action_send_email'
+        
+    def run(self, dispatcher, tracker, domain):
+        # Get user's email id
+        to_email = tracker.get_slot('email')
 
-# 		zomato = zomatopy.initialize_app(config)
-# 		loc = tracker.get_slot('location')
-# 		cuisine = tracker.get_slot('cuisine')
-# 		location_detail=zomato.get_location(loc, 1)
-# 		d1 = json.loads(location_detail)
-# 		print(d1)
-# 		lat=d1["location_suggestions"][0]["latitude"]
-# 		lon=d1["location_suggestions"][0]["longitude"]
-# 		cuisines_dict={'chinese':25,'italian':55,'north indian':50,'south indian':85}
-# 		results=zomato.restaurant_search("", lat, lon, str(cuisines_dict.get(cuisine)), 5)
-# 		d = json.loads(results)
-# 		response=""
-# 		if d['results_found'] == 0:
-# 			response= "no results"
-# 		else:
-# 			for restaurant in d['restaurants']:
-# 				response=response+ "Found "+ restaurant['restaurant']['name']+ " in "+ restaurant['restaurant']['location']['address']+"\n"
-# 		
-# 		dispatcher.utter_message("-----"+response)
-# 		return [SlotSet('location',loc)]
-    
-class ActionSendMail(Action):
-	def name(self):
-		return 'action_send_email'
-		
-	def run(self, dispatcher, tracker, domain):
-		print('email sent')
-		email_address = tracker.get_slot('email')
-		dispatcher.utter_message("I have sent you an email at "+email_address)
-		return
+        # Get location and cuisines to put in the email
+        location = tracker.get_slot('location')
+        cuisine = tracker.get_slot('cuisine')
+        global restaurant_email_list
+        # Construct the email 'subject' and the contents.
+        email_subject_line = "You requested some " + cuisine.capitalize() + " restaurants in " + str(location).capitalize()
+        email_message_content = "Hello "+ to_email.split('@')[0] +", Here are the top " + str(len(restaurant_email_list)) + cuisine.capitalize() + " restaurants in " + str(location).capitalize() + "." + "\n \n"
+        for restaurant in restaurant_email_list:
+            email_message_content = email_message_content + restaurant['restaurant']['name']+ " in "+ restaurant['restaurant']['location']['address']+" has been rated " + restaurant['restaurant']['user_rating']['aggregate_rating'] + "\n" +"\n"
 
-def retrieve_restaurant(lat, lon, cuisines_dict, cuisine, res_key, d_rest):
+        # Open SMTP connection to our email id.
+        gmail_smtp = smtplib.SMTP("smtp.gmail.com", 587)
+        gmail_smtp.starttls()
+        gmail_smtp.login("superbotfoodie@gmail.com", "iamarobot")
+
+        # Create email message object
+        email_message = EmailMessage()
+
+        # Fill in message properties
+        email_message['Subject'] = email_subject_line
+        email_message['From'] = "superbotfoodie@gmail.com"
+
+        # Fill in the message content
+        email_message.set_content(email_message_content)
+        email_message['To'] = to_email
+
+        gmail_smtp.send_message(email_message)
+        gmail_smtp.quit()
+        dispatcher.utter_message("I have sent you an email at "+to_email)
+        return []
+
+def retrieve_restaurant(lat, lon, cuisines_dict, cuisine, res_key, restaurant_result_dictionary):
     base_url = "https://developers.zomato.com/api/v2.1/"
     headers = {'Accept': 'application/json',
-                'user-key': '5787bb8301dd97fbe86ec40febf7e03b'}
+                'user-key': '5faeea4aac0526ad50539c0b87a5fd15'}
     try:
         results = (requests.get(base_url + "search?" + "&lat=" + str(lat) + "&lon=" + str(lon) + "&cuisines=" + str(
             cuisines_dict.get(cuisine)) + "&start=" + str(res_key)+"&count=20", headers=headers).content).decode("utf-8")
     except:
         return
     d = json.loads(results)
-    d_rest.extend(d['restaurants'])
+    restaurant_result_dictionary.extend(d['restaurants'])
