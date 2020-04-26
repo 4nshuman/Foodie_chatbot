@@ -17,6 +17,7 @@
 - yes sure.
 - ok, send it.
 - that sounds good
+- yes. please send it to [this@that.com](email)
 
 ## intent:deny
 - no
@@ -35,6 +36,7 @@
 - don't send email
 - not really
 - no, don;t
+- no, don't send
 
 ## intent:thank
 - thanks
@@ -279,6 +281,24 @@
 - I'm looking at [Bhiwandi](location)
 - get me a restaurant for [5 people](people)
 - search me a [low end](price:low) [arabian](cuisine) restaurant in [Bhilai](location) for [5 people](people)
+- find me a restaurant in [Rishikesh](location)
+- find me a restaurant in [Pune](location)
+- I'd like to eat [Biryani](cuisine)
+- [4 people](people) would be joining
+- Find me a restaurant in [kolkata](location)
+- [16 people](people) will be there
+- find me a [high end](price:high) restaurant for [5 people](people)
+- find in [Italy](location)
+- okay, find in [Madras](location:Chennai)
+- Do you have [Brazilian](cuisine)
+- find me a restaurant in [America](location)
+- ok, something in [delhi](location) then
+- [12 friends](people) will join me
+- find me a restaurant in [New York](location)
+- ok, then find something in [Delhi](location)
+- [Italian](cuisine)
+- [6 people](people)
+- [Low](price:low)
 
 ## intent:send_email
 - [a.t@gmail.com](email)
@@ -295,6 +315,8 @@
 - [myemail01.new@gmail.com](email)
 - yeah sure, my email ID is [some12_.thing@someotherthing.com](email)
 - yes send it to [someemail123@sommailbox.com](email)
+- sure, it is [hithere@gothere.com](email)
+- [yin@yang.com](email)
 
 ## synonym:4
 - four

@@ -81,7 +81,7 @@ class ActionSearchRestaurants(Action):
 	    return results, lat, lon
     
 	def get_restaurants(self, lat, lon, budgetmin, budgetmax , cuisine):
-	    cuisines_dict = {'american': 1, 'chinese': 25, 'italian': 55,
+	    cuisines_dict = {'american': 1, 'bakery':5, 'biryani':7, 'chinese': 25, 'italian': 55, 'cafe':30,
                          'mexican': 73, 'north indian': 50, 'south indian': 85}
 	    d_rest = []
 	    executer = ThreadPoolExecutor(max_workers=10)
@@ -90,6 +90,82 @@ class ActionSearchRestaurants(Action):
 	    executer.shutdown()
 	    return d_rest
     
+class VerifyLocation(Action):
+
+    TIER_1 = []
+    TIER_2 = []
+
+    def __init__(self):
+        self.TIER_1 = ['ahmedabad', 'bangalore', 'chennai',
+                       'delhi', 'hyderabad', 'kolkata', 'mumbai', 'pune']
+        self.TIER_2 = ['agra', 'ajmer', 'aligarh', 'allahabad', 'amravati', 'amritsar', 'asansol', 'aurangabad', 'bareilly', 'belgaum', 'bhavnagar', 'bhiwandi', 'bhopal', 'bhubaneswar', 'bikaner', 'bokaro steel city', 'chandigarh', 'coimbatore', 'cuttack', 'dehradun', 'dhanbad', 'durg-bhilai nagar', 'durgapur', 'erode', 'faridabad', 'firozabad', 'ghaziabad', 'gorakhpur', 'gulbarga', 'guntur', 'gurgaon', 'guwahati', 'gwalior', 'hubli-dharwad', 'indore', 'jabalpur', 'jaipur', 'jalandhar', 'jammu', 'jamnagar', 'jamshedpur', 'jhansi', 'jodhpur', 'kannur', 'kanpur', 'kakinada', 'kochi',
+                       'kottayam', 'kolhapur', 'kollam', 'kota', 'kozhikode', 'kurnool', 'lucknow', 'ludhiana', 'madurai', 'malappuram', 'mathura', 'goa', 'mangalore', 'meerut', 'moradabad', 'mysore', 'nagpur', 'nanded', 'nashik', 'nellore', 'noida', 'palakkad', 'patna', 'pondicherry', 'raipur', 'rajkot', 'rajahmundry', 'ranchi', 'rourkela', 'salem', 'sangli', 'siliguri', 'solapur', 'srinagar', 'sultanpur', 'surat', 'thiruvananthapuram', 'thrissur', 'tiruchirappalli', 'tirunelveli', 'tiruppur', 'ujjain', 'vijayapura', 'vadodara', 'varanasi', 'vasai-virar city', 'vijayawada', 'visakhapatnam', 'warangal']
+    def name(self):
+        return "actions_VerifyLocation"
+    
+    def run(self, dispatcher, tracker, domain):
+        loc = tracker.get_slot('location')
+        if not (self.verify_location(loc)):
+            dispatcher.utter_message(
+                "We do not operate in " + loc + " yet. Please try some other city.")
+            return [SlotSet('location', None), SlotSet("location_ok", False)]
+        else:
+            return [SlotSet('location', loc), SlotSet("location_ok", True)]
+
+    def verify_location(self, loc):
+        return loc.lower() in self.TIER_1 or loc.lower() in self.TIER_2
+
+class VerifyBudget(Action):
+
+    def name(self):
+        return "actions_VerifyBudget"
+
+    def run(self, dispatcher, tracker, domain):
+        budget_criteria = tracker.get_slot('price')
+        cost_min = 0
+        cost_max = 1000
+            
+        error_msg = "Sorry!! price range not supported, please re-enter."
+        try:
+            if(budget_criteria=='low'):
+                cost_max = 300
+            elif(budget_criteria=='mid'):
+                cost_min = 300
+                cost_max = 700
+            elif(budget_criteria=='high'):
+                cost_min=700
+        
+        except ValueError:
+            dispatcher.utter_message(error_msg)
+            return [SlotSet('price', None), SlotSet('budget_ok', False)]
+        min_dict = [0, 300, 700]
+        max_dict = [300, 700]
+        if cost_min in min_dict and (cost_max in max_dict or cost_max > 700):
+            return [SlotSet('price', budget_criteria), SlotSet('budget_ok', True)]
+        else:
+            dispatcher.utter_message(error_msg)
+            return [SlotSet('price', None), SlotSet('budget_ok', False)]
+
+class VerifyCuisine(Action):
+
+    def name(self):
+        return "actions_VerifyCuisine"
+
+    def run(self, dispatcher, tracker, domain):
+        cuisines = ['chinese','mexican','italian','american','south indian','north indian']
+        error_msg = "Sorry!! The cuisine is not supported. Please re-enter."
+        cuisine = tracker.get_slot('cuisine')
+        try:
+            cuisine = cuisine.lower()
+        except (RuntimeError, TypeError, NameError, AttributeError):
+            dispatcher.utter_message(error_msg)
+            return [SlotSet('cuisine', None), SlotSet('cuisine_ok', False)]
+        if cuisine in cuisines:
+            return [SlotSet('cuisine', cuisine), SlotSet('cuisine_ok', True)]
+        else:
+            dispatcher.utter_message(error_msg)
+            return [SlotSet('cuisine', None), SlotSet('cuisine_ok', False)]
+
 # 		zomato = zomatopy.initialize_app(config)
 # 		loc = tracker.get_slot('location')
 # 		cuisine = tracker.get_slot('cuisine')
@@ -98,7 +174,7 @@ class ActionSearchRestaurants(Action):
 # 		print(d1)
 # 		lat=d1["location_suggestions"][0]["latitude"]
 # 		lon=d1["location_suggestions"][0]["longitude"]
-# 		cuisines_dict={'bakery':5,'chinese':25,'cafe':30,'italian':55,'biryani':7,'north indian':50,'south indian':85}
+# 		cuisines_dict={'chinese':25,'italian':55,'north indian':50,'south indian':85}
 # 		results=zomato.restaurant_search("", lat, lon, str(cuisines_dict.get(cuisine)), 5)
 # 		d = json.loads(results)
 # 		response=""
