@@ -1,6 +1,9 @@
 actions:
 - action_search_restaurants
 - action_send_email
+- actions_VerifyBudget
+- actions_VerifyCuisine
+- actions_VerifyLocation
 - utter_acknowledgement
 - utter_ask_cuisine
 - utter_ask_email
@@ -21,11 +24,11 @@ entities:
 - price
 intents:
 - restaurant_search
-- thank
-- send_email
-- deny
 - greet
 - affirm
+- send_email
+- thank
+- deny
 - unknown
 - goodbye
 - stop
@@ -102,16 +105,25 @@ session_config:
   carry_over_slots_to_new_session: true
   session_expiration_time: 0
 slots:
+  budget_ok:
+    initial_value: false
+    type: bool
   cuisine:
     type: text
+  cuisine_ok:
+    initial_value: false
+    type: bool
   email:
     type: text
   location:
     type: text
+  location_ok:
+    initial_value: false
+    type: bool
   people:
     type: text
   price:
     type: text
   restaurant_exist:
-      type: bool
-      initial_value: False
+    initial_value: false
+    type: bool
