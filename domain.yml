@@ -1,40 +1,40 @@
 actions:
-- action_calculate_estimate
-- action_search_restaurants
-- action_send_email
-- actions_VerifyBudget
-- actions_VerifyCuisine
-- actions_VerifyLocation
-- utter_acknowledgement
-- utter_ask_cuisine
-- utter_ask_email
-- utter_ask_email_permission
-- utter_ask_estimateCalculation
-- utter_ask_howcanhelp
-- utter_ask_location
-- utter_ask_numberofpeople
-- utter_ask_price
-- utter_default
-- utter_goodbye
-- utter_greet
-- utter_welcome
+  - action_calculate_estimate
+  - action_search_restaurants
+  - action_send_email
+  - actions_VerifyBudget
+  - actions_VerifyCuisine
+  - actions_VerifyLocation
+  - utter_acknowledgement
+  - utter_ask_cuisine
+  - utter_ask_email
+  - utter_ask_email_permission
+  - utter_ask_estimateCalculation
+  - utter_ask_howcanhelp
+  - utter_ask_location
+  - utter_ask_numberofpeople
+  - utter_ask_price
+  - utter_default
+  - utter_goodbye
+  - utter_greet
+  - utter_welcome
 entities:
-- cuisine
-- email
-- location
-- people
-- price
+  - cuisine
+  - email
+  - location
+  - people
+  - price
 intents:
-- restaurant_search
-- greet
-- deny
-- affirm
-- estimate_calculation
-- thank
-- send_email
-- unknown
-- goodbye
-- stop
+  - restaurant_search
+  - greet
+  - deny
+  - affirm
+  - estimate_calculation
+  - thank
+  - send_email
+  - unknown
+  - goodbye
+  - stop
 responses:
   utter_acknowledgement:
     - text: Alright, gotchya.
@@ -44,16 +44,16 @@ responses:
     - text: Alright.
     - text: That is fine.
   utter_ask_cuisine:
-  - buttons:
-    - payload: Chinese
-      title: Chinese
-    - payload: Italian
-      title: Italian
-    - payload: South Indian
-      title: South Indian
-    - payload: North Indian
-      title: North Indian
-    text: What kind of cuisine would you like?
+    - buttons:
+        - payload: Chinese
+          title: Chinese
+        - payload: Italian
+          title: Italian
+        - payload: South Indian
+          title: South Indian
+        - payload: North Indian
+          title: North Indian
+      text: What kind of cuisine would you like?
   utter_ask_email:
     - text: Please tell me your email ID.
     - text: Could I have your email please.
@@ -61,13 +61,13 @@ responses:
     - text: Could you please let me know your email ID ?
   utter_ask_email_permission:
     - text: Would you like to get the restaurant details on your mail ?
-  - text: I could send you more details over email, would you like that ?
-  - text: How about I send some more details over email ?
-  - text: Should I send you details of all the restaurants on email?
+    - text: I could send you more details over email, would you like that ?
+    - text: How about I send some more details over email ?
+    - text: Should I send you details of all the restaurants on email?
   utter_ask_estimateCalculation:
-  - text: I can help with the meal estimation, would you like that?
-  - text: Shall I estimate the expenditure for you ?
-  - text: May I estimate the total cost of this meal for you ?
+    - text: I can help with the meal estimation, would you like that?
+    - text: Shall I estimate the expenditure for you ?
+    - text: May I estimate the total cost of this meal for you ?
   utter_ask_howcanhelp:
     - text: Can I be of service in any other matter?
     - text: What else do you require today ?
@@ -90,17 +90,17 @@ responses:
     - text: How many persons would join you on this meal ?(meal estimates will be sent
         over mail)
   utter_ask_price:
-  - buttons:
-    - payload: Low
-      title: Less than 300
-    - payload: Moderate
-      title: Rs. 300 to 700
-    - payload: High
-      title: More than 700
-    text: what is the expenditure(for 2 person) that we are looking at ?
+    - buttons:
+        - payload: Low
+          title: Less than 300
+        - payload: Moderate
+          title: Rs. 300 to 700
+        - payload: High
+          title: More than 700
+      text: what is the expenditure(for 2 person) that we are looking at ?
   utter_default:
-  - text: I am sorry, cannot help you with that, as of now I am just a restaurant
-      search bot.
+    - text: I am sorry, cannot help you with that, as of now I am just a restaurant
+        search bot.
   utter_goodbye:
     - text: Goodbye
     - text: Cool, goodbye
