@@ -123,7 +123,6 @@
 - Hey Foodie
 - Hello
 - Hi
-<<<<<<< HEAD
 - Good morning
 - Good evening
 - At your service, sir
@@ -132,11 +131,9 @@
 - Hello foodie
 - How may I help you?
 - hi
-=======
 - hello there
 - helo
 - hello bot
->>>>>>> master
 
 ## intent:restaurant_search
 - i'm looking for a place to eat
@@ -426,7 +423,6 @@
 - find me a restaurant in [kanpur](location)
 - I want [Biryani](cuisine) for [4 people](people)
 - in [ludhiana](location)
-<<<<<<< HEAD
 - food
 - [kalamassery](location)
 - [Ernakulam](location)
@@ -435,7 +431,6 @@
 - [low](price) budget
 - [5 persons](people)
 - [Chinese](cuisine:chinese)
-=======
 - I am looking for a restaurant in [Kannur](location)
 - [>=700](price:high)
 - ok, can you find another restaurant
@@ -464,7 +459,6 @@
 - I will be having a group of [4](people)
 - find me an [awadhi](cuisine) restaurant in [Ajmer](location) with [low pricing](price:low)
 - [South Indian](cuisine)
->>>>>>> master
 
 ## intent:send_email
 - [a.t@gmail.com](email)

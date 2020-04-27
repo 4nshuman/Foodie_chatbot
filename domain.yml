@@ -25,7 +25,6 @@ entities:
   - people
   - price
 intents:
-<<<<<<< HEAD
   - restaurant_search
   - greet
   - deny
@@ -36,18 +35,6 @@ intents:
   - unknown
   - goodbye
   - stop
-=======
-- goodbye
-- estimate_calculation
-- send_email
-- affirm
-- greet
-- deny
-- restaurant_search
-- thank
-- unknown
-- stop
->>>>>>> master
 responses:
   utter_acknowledgement:
     - text: Alright, gotchya.

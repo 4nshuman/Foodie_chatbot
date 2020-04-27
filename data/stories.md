@@ -35,7 +35,6 @@
 * thank
     - utter_welcome
     - utter_ask_howcanhelp
-<<<<<<< HEAD
 * goodbye
     - utter_goodbye
     - action_restart
@@ -217,8 +216,6 @@
 * affirm
     - utter_goodbye
     - action_restart
-=======
->>>>>>> master
 
 ## interactive_story_1
 * restaurant_search{"cuisine": "burger"}
