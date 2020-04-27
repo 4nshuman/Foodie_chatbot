@@ -19,7 +19,7 @@ class ActionSearchRestaurants(Action):
 		return 'action_search_restaurants'
 		
 	def run(self, dispatcher, tracker, domain):
-		config={ "user_key":"5faeea4aac0526ad50539c0b87a5fd15"}
+		config={ 'user_key':'5faeea4aac0526ad50539c0b87a5fd15'}
 		zomato = zomatopy.initialize_app(config)
 		# Get location from slot
 		location = tracker.get_slot('location')
@@ -43,7 +43,7 @@ class ActionSearchRestaurants(Action):
 		if (results == 0):
 		    # Zomato API could not find details for this location.
 		    restaurant_exist = False
-		    dispatcher.utter_message("I am sorry, no restaurants found in this location."+ "\n" + "Check the location name or try with a different location")
+		    dispatcher.utter_message('I am sorry, no restaurants found in this location.'+ '\n' + 'Check the location name or try with a different location')
 		else:
 		    restaurant_result_dictionary = self.get_restaurants(lat, lon, cost_min, cost_max, cuisine)
 
@@ -55,10 +55,10 @@ class ActionSearchRestaurants(Action):
                 budget_dictionary, key=lambda k: float(k['restaurant']['user_rating']['aggregate_rating']), reverse=True)
 
             # Build the response
-		    response = ""
+		    response = ''
 		    restaurant_exist = False
 		    if len(budget_dictionary_rating_sorted) == 0:
-		        dispatcher.utter_message("Sorry, no results found that would fit in the provided budget."+ "\n")
+		        dispatcher.utter_message('Sorry, no results found that would fit in the provided budget.'+ '\n')
 		    else:
                 # Pick top 5 to display in chat window
 		        budget_dictionary_rating_top5 = budget_dictionary_rating_sorted[:5]
@@ -68,10 +68,10 @@ class ActionSearchRestaurants(Action):
 		        if(restaurant_email_list and len(restaurant_email_list) > 0):
 		            restaurant_exist = True
 		        for restaurant in budget_dictionary_rating_top5:
-		            response = response + restaurant['restaurant']['name'] + " in " + restaurant['restaurant']['location']['address'] + \
-                        " has been rated " + \
-                        restaurant['restaurant']['user_rating']['aggregate_rating'] + "\n" + "\n"
-		        dispatcher.utter_message("Here are our picks !"+ "\n ==================================================== \n" + response + "\n ==================================================== \n \n")
+		            response = response + restaurant['restaurant']['name'] + ' in ' + restaurant['restaurant']['location']['address'] + \
+                        ' has been rated ' + \
+                        str(restaurant['restaurant']['user_rating']['aggregate_rating']) + '\n' + '\n'
+		        dispatcher.utter_message('Here are our picks !'+ '\n ==================================================== \n' + response + '\n ==================================================== \n \n')
 		return [SlotSet('restaurant_exist', restaurant_exist)]
     
 	def get_additional_location_details(self, location, zomato):
@@ -80,10 +80,10 @@ class ActionSearchRestaurants(Action):
 	    d1 = json.loads(location_detail)
 	    lat = 0
 	    lon = 0
-	    results = len(d1["location_suggestions"])
+	    results = len(d1['location_suggestions'])
 	    if (results > 0):
-	        lat = d1["location_suggestions"][0]["latitude"]
-	        lon = d1["location_suggestions"][0]["longitude"]
+	        lat = d1['location_suggestions'][0]['latitude']
+	        lon = d1['location_suggestions'][0]['longitude']
 	    return results, lat, lon
     
 	def get_restaurants(self, lat, lon, budgetmin, budgetmax , cuisine):
@@ -108,16 +108,16 @@ class VerifyLocation(Action):
         self.TIER_2 = ['agra', 'ajmer', 'aligarh', 'allahabad', 'amravati', 'amritsar', 'asansol', 'aurangabad', 'bareilly', 'belgaum', 'bhavnagar', 'bhiwandi', 'bhopal', 'bhubaneswar', 'bikaner', 'bokaro steel city', 'chandigarh', 'coimbatore', 'cuttack', 'dehradun', 'dhanbad', 'durg-bhilai nagar', 'durgapur', 'erode', 'faridabad', 'firozabad', 'ghaziabad', 'gorakhpur', 'gulbarga', 'guntur', 'gurgaon', 'guwahati', 'gwalior', 'hubli','dharwad', 'indore', 'jabalpur', 'jaipur', 'jalandhar', 'jammu', 'jamnagar', 'jamshedpur', 'jhansi', 'jodhpur', 'kannur', 'kanpur', 'kakinada', 'kochi',
                        'kottayam', 'kolhapur', 'kollam', 'kota', 'kozhikode', 'kurnool', 'lucknow', 'ludhiana', 'madurai', 'malappuram', 'mathura', 'goa', 'mangalore', 'meerut', 'moradabad', 'mysore', 'nagpur', 'nanded', 'nashik', 'nellore', 'noida', 'palakkad', 'patna', 'pondicherry', 'raipur', 'rajkot', 'rajahmundry', 'ranchi', 'rourkela', 'salem', 'sangli', 'siliguri', 'solapur', 'srinagar', 'sultanpur', 'surat', 'thiruvananthapuram', 'thrissur', 'tiruchirappalli', 'tirunelveli', 'tiruppur', 'ujjain', 'vijayapura', 'vadodara', 'varanasi', 'vasai', 'virar', 'vijayawada', 'visakhapatnam', 'warangal']
     def name(self):
-        return "actions_VerifyLocation"
+        return 'actions_VerifyLocation'
     
     def run(self, dispatcher, tracker, domain):
         location = tracker.get_slot('location')
         if not (self.verify_location(location)):
             dispatcher.utter_message(
-                "We do not operate in " + location + " yet. Please try some other city.")
-            return [SlotSet('location', None), SlotSet("location_ok", False)]
+                'We do not operate in ' + location + ' yet. Please try some other city.')
+            return [SlotSet('location', None), SlotSet('location_ok', False)]
         else:
-            return [SlotSet("location_ok", True)]
+            return [SlotSet('location_ok', True)]
 
     def verify_location(self, location):
         return location.lower() in self.TIER_1 or location.lower() in self.TIER_2
@@ -125,14 +125,14 @@ class VerifyLocation(Action):
 class VerifyBudget(Action):
 
     def name(self):
-        return "actions_VerifyBudget"
+        return 'actions_VerifyBudget'
 
     def run(self, dispatcher, tracker, domain):
         budget_criteria = tracker.get_slot('price')
         cost_min = 0
         cost_max = 1000
             
-        error_msg = "Sorry!! price range not supported, please re-enter."
+        error_msg = 'Sorry!! price range not supported, please re-enter.'
         try:
             if(budget_criteria=='low'):
                 cost_max = 300
@@ -156,11 +156,11 @@ class VerifyBudget(Action):
 class VerifyCuisine(Action):
 
     def name(self):
-        return "actions_VerifyCuisine"
+        return 'actions_VerifyCuisine'
 
     def run(self, dispatcher, tracker, domain):
         cuisines = ['bakery','biryani','cafe','chinese','mexican','italian','american','south indian','north indian']
-        error_msg = "Sorry!! The cuisine is not supported. Please re-enter."
+        error_msg = 'Sorry!! The cuisine is not supported. Please re-enter.'
         cuisine = tracker.get_slot('cuisine')
         try:
             cuisine = cuisine.lower()
@@ -186,7 +186,7 @@ class ActionCalculateMealEstimate(Action):
             try:
                 if(people>1):
                     meal_estimate[restaurant_id] = restaurant['restaurant']['average_cost_for_two']*people
-                    dispatcher.utter_message('your meal at '+ restaurant['restaurant']['name'] +' would cost approx. '+str(meal_estimate[restaurant_id]))
+                    dispatcher.utter_message('your meal at '+ restaurant['restaurant']['name'] +' would cost approx. '+str(meal_estimate[restaurant_id]/2))
                 else:
                     meal_estimate[restaurant_id] = restaurant['restaurant']['average_cost_for_two']/2
             except:
@@ -204,33 +204,34 @@ class ActionSendEmail(Action):
         # Get location and cuisines to put in the email
         location = tracker.get_slot('location')
         cuisine = tracker.get_slot('cuisine')
-        people = tracker.get_slot('people').split(' ')[0]
+        if(tracker.get_slot('people')):
+            people = tracker.get_slot('people').split(' ')[0]
         global restaurant_email_list, meal_estimate
         # Construct the email 'subject' and the contents.
-        email_subject_line = "You requested some " + cuisine.capitalize() + " restaurants in " + str(location).capitalize()
-        email_message_content = "Hello "+ to_email.split('@')[0] +",\n Here are the top " + str(len(restaurant_email_list)) + ' ' + cuisine.capitalize() + " restaurants in " + str(location).capitalize() + ". \n \n"
+        email_subject_line = 'You requested some ' + cuisine.capitalize() + ' restaurants in ' + str(location).capitalize()
+        email_message_content = 'Hello '+ to_email.split('@')[0] +',\n Here are the top ' + cuisine.capitalize() + ' restaurants in ' + str(location).capitalize() + '. \n \n'
         for index,restaurant in enumerate(restaurant_email_list):
-            email_message_content += str(index+1) + ". "+ restaurant['restaurant']['name'] + "\n"
-            email_message_content += "\t Address : "+ restaurant['restaurant']['location']['address'] + ". \n \t Click this link to go to the location on maps : https://www.google.com/maps/@"+restaurant['restaurant']['location']['latitude']+','+restaurant['restaurant']['location']['longitude']+',15z \n'
-            email_message_content += "\t The ratings are : " + restaurant['restaurant']['user_rating']['aggregate_rating'] + "\n"
+            email_message_content += str(index+1) + '. '+ restaurant['restaurant']['name'] + '\n'
+            email_message_content += '\t Address : '+ restaurant['restaurant']['location']['address']
+            email_message_content += '\t Timings : the restaurant is open from '+ restaurant['restaurant']['timings'] +'. \n'
+            email_message_content += '\t The ratings are : ' + str(restaurant['restaurant']['user_rating']['aggregate_rating']) + '\n'
             email_message_content += '\t Here the average cost for 2 people is '+restaurant['restaurant']['currency']+str(restaurant['restaurant']['average_cost_for_two'])+ '. \n'
-            if(meal_estimate[restaurant['restaurant']['id']]>0):
-                email_message_content += '\t As per our chat you were going out with '+people+' people. So you\'ll be spending around '+ restaurant['restaurant']['currency'] + str(meal_estimate[restaurant['restaurant']['id']]) +'.'
-            else:
-                email_message_content += '\t Due to some reason we were not able to calculate the estimates for ' +people+ ' people.'
-        email_message_content = email_message_content+ '\n \n Please do let us know of your feedback by replying to this mail.\n'
+            if(len(meal_estimate)):
+                email_message_content += '\t As per our chat you were going out with '+people+' people. So you\'ll be spending around '+ restaurant['restaurant']['currency'] + str(meal_estimate[restaurant['restaurant']['id']]) +'. \n'
+            email_message_content += '\t Click this link to go to the location on maps : https://www.google.com/maps/@'+restaurant['restaurant']['location']['latitude']+','+restaurant['restaurant']['location']['longitude']+',15z \n \n'
+        email_message_content = email_message_content+ '\n Please do let us know of your feedback by replying to this mail.\n'
 
         # Open SMTP connection to our email id.
-        gmail_smtp = smtplib.SMTP("smtp.gmail.com", 587)
+        gmail_smtp = smtplib.SMTP('smtp.gmail.com', 587)
         gmail_smtp.starttls()
-        gmail_smtp.login("superbotfoodie@gmail.com", "iamarobot")
+        gmail_smtp.login('superbotfoodie@gmail.com', 'iamarobot')
 
         # Create email message object
         email_message = EmailMessage()
 
         # Fill in message properties
         email_message['Subject'] = email_subject_line
-        email_message['From'] = "superbotfoodie@gmail.com"
+        email_message['From'] = 'Foodie SuperBot'
 
         # Fill in the message content
         email_message.set_content(email_message_content)
@@ -238,16 +239,16 @@ class ActionSendEmail(Action):
 
         gmail_smtp.send_message(email_message)
         gmail_smtp.quit()
-        dispatcher.utter_message("I have sent you an email at "+to_email)
+        dispatcher.utter_message('I have sent you an email at '+to_email)
         return []
 
 def retrieve_restaurant(lat, lon, cuisines_dict, cuisine, res_key, restaurant_result_dictionary):
-    base_url = "https://developers.zomato.com/api/v2.1/"
+    base_url = 'https://developers.zomato.com/api/v2.1/'
     headers = {'Accept': 'application/json',
                 'user-key': '5faeea4aac0526ad50539c0b87a5fd15'}
     try:
-        results = (requests.get(base_url + "search?" + "&lat=" + str(lat) + "&lon=" + str(lon) + "&cuisines=" + str(
-            cuisines_dict.get(cuisine)) + "&start=" + str(res_key)+"&count=20", headers=headers).content).decode("utf-8")
+        results = (requests.get(base_url + 'search?' + '&lat=' + str(lat) + '&lon=' + str(lon) + '&cuisines=' + str(
+            cuisines_dict.get(cuisine)) + '&start=' + str(res_key)+'&count=20', headers=headers).content).decode('utf-8')
     except:
         return
     d = json.loads(results)

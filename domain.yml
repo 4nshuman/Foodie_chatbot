@@ -25,15 +25,15 @@ entities:
 - people
 - price
 intents:
-- greet
-- thank
-- affirm
-- restaurant_search
-- deny
-- send_email
 - estimate_calculation
-- goodbye
+- affirm
+- thank
+- deny
+- greet
+- send_email
+- restaurant_search
 - unknown
+- goodbye
 - stop
 responses:
   utter_acknowledgement:

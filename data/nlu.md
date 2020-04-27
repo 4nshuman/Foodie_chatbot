@@ -27,6 +27,8 @@
 - it's [s@t.com](email)
 - yes, sure
 - yeah sure
+- yes, please
+- sure, please do send it
 
 ## intent:deny
 - no
@@ -55,6 +57,13 @@
 - that would be it, nothing else
 - nothing else, bye
 - no, not right now.
+- no, thanks
+- nothing else
+- no, not needed
+- no thanks
+- no, don't need that
+- not needed
+- no, that would be it
 
 ## intent:thank
 - thanks
@@ -72,6 +81,7 @@
 - thank you.
 - tahnk you
 - ok, thanks
+- thanks.
 
 ## intent:goodbye
 - bye
@@ -85,6 +95,8 @@
 - thanks, good bye
 - thanks, that would be all
 - thank you, bye
+- thank you, bye.
+- thank you. bye bye
 
 ## intent:greet
 - yo
@@ -364,10 +376,25 @@
 - find me a restaurant in [vasai](location:vasai-virar city)
 - can you also search for some restaurants in [virar](location:vasai-virar city)
 - find me a [bakery](cuisine) in [Lucknow](location)
-- [Moderate](price:mid)
 - yeah, find me some restaurant in [Kozikode](location:kozhikode)
-- [Italian](cuisine)
-- [High](price:high)
+- in [Pune](location)
+- get me good places to eat
+- in [dharwad](location)
+- I would really like to search for some restaurants
+- in [guwahti](location:Guwahati)
+- [300 to 700](price:mid)
+- in [Bhiwandi](location)
+- book me a place to eat
+- [bhiwandi](location)
+- around [8 people](people)
+- find me a good restaurant for [6 people](people)
+- in [jaisalmer](location)
+- ok, in [jalandhar](location) ?
+- find me a restaurant in [kanpur](location)
+- I want [Biryani](cuisine) for [4 people](people)
+- in [ludhiana](location)
+- [North Indian](cuisine)
+- get me a [low end](price:low) restaurant
 
 ## intent:send_email
 - [a.t@gmail.com](email)
@@ -392,9 +419,21 @@
 - my email is [anshuman01.tripathi@gmail.com](email)
 - yes, send it to [anshuman01.tripathi@gmail.com](email)
 - sure, send it to [anshuman01.tripathi@gmail.com](email)
+- it is [anshuman01.tripathi@gmail.com](email)
+- yes, send it over to [anshuman01.tripathi@gmail.com](email)
+- [anshuman01.tripathi@gmail.com](email) is my email
 
 ## intent:unknown
 - r@
+- top@a
+- fa s
+- blah blah
+- chik
+- sd adaf
+- get me a taxi
+- book a plumber
+- book me a television
+- find me a taci please
 
 ## intent:estimate_calculation
 - [a-zA-Z ]*[\d]+[a-zA-Z ]*
@@ -402,6 +441,10 @@
 - [3](people)
 - [7](people)
 - [8](people)
+- [12](people)
+- yes, please make a meal estimation
+- can you please estimate my meal budget
+- around [10 people](people) would be joining me
 
 ## synonym:0
 - only me
@@ -421,6 +464,9 @@
 
 ## synonym:Delhi
 - New Delhi
+
+## synonym:Guwahati
+- guwahti
 
 ## synonym:Mysore
 - Mysuru
@@ -444,10 +490,14 @@
 - >700
 - I'd like
 - high end
+- 1000
 
 ## synonym:hubli-dharwad
 - Hubli
 - Dharwad
+
+## synonym:kozhikode
+- Kozikode
 
 ## synonym:low
 - Low
@@ -458,6 +508,9 @@
 - moderate
 - Moderate
 - mid range
+- 300 to 700
+- 300 - 700
+- 300-700
 
 ## synonym:thiruvananthapuram
 - trivandrum
