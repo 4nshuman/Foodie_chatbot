@@ -209,7 +209,6 @@ class ActionCalculateMealEstimate(Action):
 
     def run(self, dispatcher, tracker, domain):
         global meal_estimate
-        # Get user's email id
         people = int(tracker.get_slot('people').split(' ')[0])
         for restaurant in restaurant_email_list:
             restaurant_id = restaurant['restaurant']['id']
