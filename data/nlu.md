@@ -34,6 +34,7 @@
 - ok, please do
 - yes, send it
 - do send me an email
+- yes I would like that
 
 ## intent:deny
 - no
@@ -77,6 +78,8 @@
 - nothing, bye
 - no, I don't need it
 - no. thank you
+- no thank you
+- that's all
 
 ## intent:thank
 - thanks
@@ -96,6 +99,7 @@
 - ok, thanks
 - thanks.
 - thank you so much
+- you've been great
 
 ## intent:goodbye
 - Bye
@@ -341,12 +345,10 @@
 - get me a restaurant for [5 people](people)
 - search me a [low end](price:low) [arabian](cuisine) restaurant in [Bhilai](location) for [5 people](people)
 - let's eat outside today
-- [Kochi](location)
 - [low](price) budget
 - [5](people)
 - [italian](cuisine)
 - Let's go out for dinner
-- [Coimbatore](location)
 - [moderate](price:mid)
 - [4](people)
 - [South](cuisine:South Indian)
@@ -388,7 +390,6 @@
 - [just me](people:0)
 - get me a restaurant
 - [Mysuru](location:Mysore)
-- [5](people)
 - find me a [high end](price:high) restaurant in [Bijnor](location)
 - ok, in [Trivandrum](location)
 - ok, in [trivandrum](location:thiruvananthapuram) then
@@ -429,10 +430,7 @@
 - [kalamassery](location)
 - [Ernakulam](location)
 - [Kakkanad](location)
-- [Kochi](location)
-- [low](price) budget
 - [5 persons](people)
-- [Chinese](cuisine:chinese)
 - I am looking for a restaurant in [Kannur](location)
 - [>=700](price:high)
 - ok, can you find another restaurant
@@ -460,9 +458,13 @@
 - I want to eat [arabian](cuisine)
 - I will be having a group of [4](people)
 - find me an [awadhi](cuisine) restaurant in [Ajmer](location) with [low pricing](price:low)
-- [South Indian](cuisine)
 - I want to eat [chinese](cuisine) on a [low budget](price:low) today
 - [Palakkad](location)
+- wanna eat some [arabian](cuisine) food today
+- [mexican](cuisine)
+- anywhere in [Mumbai](location)
+- some [moderate pricing](price:mid)
+- for [3 persons](people)
 
 ## intent:send_email
 - [a.t@gmail.com](email)
@@ -493,7 +495,6 @@
 - [anshuman01.tripathi@gmail.com](email) is my email
 - at [anshuman01.tripathi@gmail.com](email)
 - yes, send me that email
-- [anshuman01.tripathi@gmail.com](email)
 - [vivekav.96@gmail.com](email)
 
 ## intent:unknown
@@ -591,6 +592,7 @@
 - <300
 - low end
 - low pricing
+- low budget
 
 ## synonym:mid
 - moderate

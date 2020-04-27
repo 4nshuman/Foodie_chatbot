@@ -19,18 +19,18 @@ actions:
 - utter_greet
 - utter_welcome
 entities:
-  - cuisine
-  - email
-  - location
-  - people
-  - price
+- cuisine
+- email
+- location
+- people
+- price
 intents:
-  - affirm
-  - thank
   - restaurant_search
+  - thank
+  - affirm
+  - deny
   - send_email
   - greet
-  - deny
   - estimate_calculation
   - unknown
   - goodbye

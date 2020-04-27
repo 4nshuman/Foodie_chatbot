@@ -2298,3 +2298,41 @@
 * deny
     - utter_goodbye
     - action_restart
+
+## interactive_story_1
+* restaurant_search{"cuisine": "arabian"}
+    - slot{"cuisine": "arabian"}
+    - actions_VerifyCuisine
+    - slot{"cuisine": null}
+    - slot{"cuisine_ok": false}
+* restaurant_search{"cuisine": "mexican"}
+    - slot{"cuisine": "mexican"}
+    - actions_VerifyCuisine
+    - slot{"cuisine_ok": true}
+    - utter_ask_location
+* restaurant_search{"location": "Mumbai"}
+    - slot{"location": "Mumbai"}
+    - actions_VerifyLocation
+    - slot{"location_ok": true}
+    - utter_ask_price
+* restaurant_search{"price": "mid"}
+    - slot{"price": "mid"}
+    - actions_VerifyBudget
+    - slot{"budget_ok": true}
+    - utter_ask_estimateCalculation
+* affirm
+    - utter_ask_numberofpeople
+* restaurant_search{"people": "3 persons"}
+    - slot{"people": "3 persons"}
+    - action_search_restaurants
+    - slot{"restaurant_exist": true}
+    - action_calculate_estimate
+    - utter_ask_email_permission
+* deny
+    - utter_acknowledgement
+* thank
+    - utter_welcome
+    - utter_ask_howcanhelp
+* deny
+    - utter_goodbye
+    - action_restart
