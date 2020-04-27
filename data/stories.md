@@ -690,6 +690,50 @@
     - utter_welcome
 
 ## interactive_story_1
+* restaurant_search
+    - utter_ask_location
+* restaurant_search{"location": "Kochi"}
+    - slot{"location": "Kochi"}
+    - utter_ask_price
+* restaurant_search{"price": "low"}
+    - slot{"price": "low"}
+    - utter_ask_numberofpeople
+* restaurant_search{"people": "5"}
+    - slot{"people": "5"}
+    - utter_ask_cuisine
+* restaurant_search{"cuisine": "italian"}
+    - slot{"cuisine": "italian"}
+    - action_search_restaurants
+    - slot{"location": "Kochi"}
+    - utter_ask_email_permission
+* deny
+    - utter_acknowledgement
+    - utter_goodbye
+* greet
+    - utter_greet
+* greet
+    - utter_ask_howcanhelp
+* restaurant_search
+    - utter_ask_location
+* restaurant_search{"location": "Coimbatore"}
+    - slot{"location": "Coimbatore"}
+    - utter_ask_price
+* restaurant_search{"price": "mid"}
+    - slot{"price": "mid"}
+    - utter_ask_numberofpeople
+* restaurant_search{"people": "4"}
+    - slot{"people": "4"}
+    - utter_ask_cuisine
+* restaurant_search{"cuisine": "South Indian"}
+    - slot{"cuisine": "South Indian"}
+    - action_search_restaurants
+    - slot{"location": "Coimbatore"}
+    - utter_ask_email_permission
+* send_email{"email": "vivek@vivek.com"}
+    - slot{"email": "vivek@vivek.com"}
+    - action_send_email
+
+## interactive_story_1
 * greet
     - utter_greet
 * restaurant_search{"cuisine": "Australian"}
