@@ -33,6 +33,7 @@
 - yes please
 - ok, please do
 - yes, send it
+- do send me an email
 
 ## intent:deny
 - no
@@ -75,6 +76,7 @@
 - no, I don't want an estimation
 - nothing, bye
 - no, I don't need it
+- no. thank you
 
 ## intent:thank
 - thanks
@@ -459,6 +461,8 @@
 - I will be having a group of [4](people)
 - find me an [awadhi](cuisine) restaurant in [Ajmer](location) with [low pricing](price:low)
 - [South Indian](cuisine)
+- I want to eat [chinese](cuisine) on a [low budget](price:low) today
+- [Palakkad](location)
 
 ## intent:send_email
 - [a.t@gmail.com](email)
@@ -490,6 +494,7 @@
 - at [anshuman01.tripathi@gmail.com](email)
 - yes, send me that email
 - [anshuman01.tripathi@gmail.com](email)
+- [vivekav.96@gmail.com](email)
 
 ## intent:unknown
 - r@
@@ -585,6 +590,7 @@
 - Low
 - <300
 - low end
+- low pricing
 
 ## synonym:mid
 - moderate

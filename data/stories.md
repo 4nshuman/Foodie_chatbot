@@ -2266,3 +2266,35 @@
     - utter_acknowledgement
     - utter_goodbye
     - action_restart
+
+## interactive_story_1
+* greet
+    - utter_greet
+* restaurant_search{"cuisine": "chinese", "price": "low"}
+    - slot{"cuisine": "chinese"}
+    - slot{"price": "low"}
+    - actions_VerifyCuisine
+    - slot{"cuisine_ok": true}
+    - actions_VerifyBudget
+    - slot{"budget_ok": true}
+    - utter_ask_location
+* restaurant_search{"location": "Palakkad"}
+    - slot{"location": "Palakkad"}
+    - actions_VerifyLocation
+    - slot{"location_ok": true}
+    - utter_ask_estimateCalculation
+* deny
+    - action_search_restaurants
+    - slot{"restaurant_exist": true}
+    - utter_ask_email_permission
+* affirm
+    - utter_ask_email
+* send_email{"email": "vivekav.96@gmail.com"}
+    - slot{"email": "vivekav.96@gmail.com"}
+    - action_send_email
+* thank
+    - utter_welcome
+    - utter_ask_howcanhelp
+* deny
+    - utter_goodbye
+    - action_restart

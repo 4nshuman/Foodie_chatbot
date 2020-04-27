@@ -159,21 +159,15 @@ class VerifyBudget(Action):
         cost_max = 1000
 
         error_msg = 'Sorry!! price range not supported, please re-enter.'
-        try:
-            if budget_criteria == 'low':
-                cost_max = 300
-            elif budget_criteria == 'mid':
-                cost_min = 300
-                cost_max = 700
-            elif budget_criteria == 'high':
-                cost_min = 700
-
-        except ValueError:
-            dispatcher.utter_message(error_msg)
-            return [SlotSet('price', None), SlotSet('budget_ok', False)]
-        min_dict = [0, 300, 700]
-        max_dict = [300, 700]
-        if cost_min in min_dict and (cost_max in max_dict or cost_max > 700):
+        if budget_criteria == 'low':
+            cost_max = 300
+            return [SlotSet('budget_ok', True)]
+        elif budget_criteria == 'mid':
+            cost_min = 300
+            cost_max = 700
+            return [SlotSet('budget_ok', True)]
+        elif budget_criteria == 'high':
+            cost_min = 700
             return [SlotSet('budget_ok', True)]
         else:
             dispatcher.utter_message(error_msg)

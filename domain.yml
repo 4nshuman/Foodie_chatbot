@@ -1,23 +1,23 @@
 actions:
-  - action_calculate_estimate
-  - action_search_restaurants
-  - action_send_email
-  - actions_VerifyBudget
-  - actions_VerifyCuisine
-  - actions_VerifyLocation
-  - utter_acknowledgement
-  - utter_ask_cuisine
-  - utter_ask_email
-  - utter_ask_email_permission
-  - utter_ask_estimateCalculation
-  - utter_ask_howcanhelp
-  - utter_ask_location
-  - utter_ask_numberofpeople
-  - utter_ask_price
-  - utter_default
-  - utter_goodbye
-  - utter_greet
-  - utter_welcome
+- action_calculate_estimate
+- action_search_restaurants
+- action_send_email
+- actions_VerifyBudget
+- actions_VerifyCuisine
+- actions_VerifyLocation
+- utter_acknowledgement
+- utter_ask_cuisine
+- utter_ask_email
+- utter_ask_email_permission
+- utter_ask_estimateCalculation
+- utter_ask_howcanhelp
+- utter_ask_location
+- utter_ask_numberofpeople
+- utter_ask_price
+- utter_default
+- utter_goodbye
+- utter_greet
+- utter_welcome
 entities:
   - cuisine
   - email
@@ -25,13 +25,13 @@ entities:
   - people
   - price
 intents:
+  - affirm
+  - thank
   - restaurant_search
+  - send_email
   - greet
   - deny
-  - affirm
   - estimate_calculation
-  - thank
-  - send_email
   - unknown
   - goodbye
   - stop
