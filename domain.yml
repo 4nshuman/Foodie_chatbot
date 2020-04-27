@@ -25,16 +25,16 @@ entities:
 - people
 - price
 intents:
-  - restaurant_search
-  - thank
-  - affirm
-  - deny
-  - send_email
-  - greet
-  - estimate_calculation
-  - unknown
-  - goodbye
-  - stop
+- greet
+- estimate_calculation
+- affirm
+- send_email
+- deny
+- restaurant_search
+- goodbye
+- thank
+- unknown
+- stop
 responses:
   utter_acknowledgement:
     - text: Alright, gotchya.

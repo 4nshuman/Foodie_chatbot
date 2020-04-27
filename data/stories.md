@@ -2513,3 +2513,111 @@
 * deny
     - utter_goodbye
     - action_restart
+
+## interactive_story_1
+* restaurant_search{"cuisine": "mexican", "price": "mid", "location": "Kolkata"}
+    - slot{"cuisine": "mexican"}
+    - slot{"location": "Kolkata"}
+    - slot{"price": "mid"}
+    - actions_VerifyCuisine
+    - slot{"cuisine_ok": true}
+    - actions_VerifyLocation
+    - slot{"location_ok": true}
+    - actions_VerifyBudget
+    - slot{"budget_ok": true}
+    - utter_ask_estimateCalculation
+* deny
+    - action_search_restaurants
+    - slot{"restaurant_exist": true}
+    - utter_ask_email_permission
+* deny
+    - utter_acknowledgement
+    - utter_ask_howcanhelp
+* thank
+    - utter_welcome
+    - utter_ask_howcanhelp
+* deny
+    - utter_goodbye
+    - action_restart
+
+## interactive_story_2
+* goodbye
+    - utter_goodbye
+    - action_restart
+
+## interactive_story_1
+* greet
+    - utter_greet
+* restaurant_search
+    - utter_ask_location
+* restaurant_search
+    - actions_VerifyLocation
+    - utter_ask_location
+* restaurant_search{"location": "Kottayam"}
+    - slot{"location": "Kottayam"}
+    - actions_VerifyLocation
+    - slot{"location_ok": true}
+    - utter_ask_price
+* restaurant_search{"price": "high"}
+    - slot{"price": "high"}
+    - actions_VerifyBudget
+    - slot{"budget_ok": true}
+    - utter_ask_estimateCalculation
+* affirm
+    - utter_ask_numberofpeople
+* estimate_calculation{"people": "4"}
+    - slot{"people": "4"}
+    - utter_ask_cuisine
+* restaurant_search{"cuisine": "mexican"}
+    - slot{"cuisine": "mexican"}
+    - actions_VerifyCuisine
+    - slot{"cuisine_ok": true}
+    - action_search_restaurants
+    - slot{"restaurant_exist": false}
+    - action_calculate_estimate
+    - utter_ask_email_permission
+* deny
+    - utter_acknowledgement
+    - utter_goodbye
+    - action_restart
+
+## interactive_story_2
+    - utter_ask_howcanhelp
+* restaurant_search
+    - utter_ask_location
+* restaurant_search{"location": "Delhi"}
+    - slot{"location": "Delhi"}
+    - actions_VerifyLocation
+    - slot{"location_ok": true}
+    - utter_ask_price
+* restaurant_search{"price": "high"}
+    - slot{"price": "high"}
+    - actions_VerifyBudget
+    - slot{"budget_ok": true}
+    - utter_ask_cuisine
+* restaurant_search{"cuisine": "Italian"}
+    - slot{"cuisine": "Italian"}
+    - actions_VerifyCuisine
+    - slot{"cuisine_ok": true}
+    - utter_ask_estimateCalculation
+* affirm
+    - utter_ask_numberofpeople
+* estimate_calculation{"people": "2"}
+    - slot{"people": "2"}
+    - action_search_restaurants
+    - slot{"restaurant_exist": true}
+    - action_calculate_estimate
+    - utter_ask_email_permission
+* send_email{"email": "vivek007zone@gmail.com"}
+    - slot{"email": "vivek007zone@gmail.com"}
+    - action_send_email
+    - utter_ask_howcanhelp
+* deny
+    - utter_goodbye
+    - action_restart
+
+## interactive_story_3
+    - utter_ask_howcanhelp
+* deny
+    - utter_goodbye
+    - action_restart

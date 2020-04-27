@@ -37,6 +37,7 @@
 - yes, send it over to me
 - do send me an email
 - yes I would like that
+- please do
 
 ## intent:deny
 - no
@@ -84,6 +85,11 @@
 - no. thank you
 - no thank you
 - that's all
+- no. I will do that myself
+- no. this is enough
+- no. this will do.
+- thank you. that's all
+- no. I'm good
 
 ## intent:thank
 - thanks
@@ -154,10 +160,10 @@
 - good evening
 - dear sir
 - hey bot
-- Hi
 - hello there
 - helo
 - hello bot
+- hello foodie
 
 ## intent:restaurant_search
 - i'm looking for a place to eat
@@ -496,13 +502,22 @@
 - find me a pub in [hydrabad](location:hyderabad)
 - find me vanilla [icecream](cuisine) in [bangalore](location)
 - [south](cuisine:south indian) food
-- [Moderate](price:mid)
 - find me some restaurant in [itanagar](location)
 - in [agra](location) i want [south](cuisine:south indian) indian food
 - [below 300](price:low)
 - anywhere in [Mumbai](location)
 - some [moderate pricing](price:mid)
 - for [3 persons](people)
+- find [mexican](cuisine) restaurants [medium pricing](price:mid) in [Kolkata](location)
+- Can you help me finding a restaurant for dinner?
+- anywhere
+- [Kottayam](location) will be fine
+- [>700](price:high)
+- we prefer eatinf [mexican](cuisine) today
+- I am going for a dinner date tonight
+- I'm going out to [Delhi](location)
+- a [high price](price:high) is also fine
+- [Italian](cuisine)
 
 ## intent:send_email
 - [a.t@gmail.com](email)
@@ -537,8 +552,8 @@
 - ok, send me that email
 - [meenakshy27i@gmail.com](email)
 - ok, my email id is [meenakshy27i@gmail.com](email)
-- [meenakshy27i@gmail.com](email)
 - [vivekav.96@gmail.com](email)
+- do send it to [vivek007zone@gmail.com](email)
 
 ## intent:unknown
 - r@
@@ -580,6 +595,8 @@
 - could you calculate the estimate
 - [2](people)
 - [5](people)
+- [4](people)
+- [2](people)
 
 ## synonym:0
 - only me
@@ -635,6 +652,9 @@
 - Hubli
 - Dharwad
 
+## synonym:hyderabad
+- hydrabad
+
 ## synonym:kozhikode
 - Kozikode
 
@@ -644,12 +664,15 @@
 - low end
 - low pricing
 - low budget
+- below 300
 
 ## synonym:mid
 - moderate
 - Moderate
 - mid range
 - 300 to 700
+- moderate pricing
+- medium pricing
 - 300 - 700
 - 300-700
 
