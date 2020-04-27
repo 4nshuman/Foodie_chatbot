@@ -18,6 +18,17 @@
 - ok, send it.
 - that sounds good
 - yes. please send it to [this@that.com](email)
+- yes, please send it
+- yes send it over
+- yeah sure thing
+- [Mysuru](location)
+- sure
+- sure, send it
+- it's [s@t.com](email)
+- yes, sure
+- yeah sure
+- yes, please
+- sure, please do send it
 
 ## intent:deny
 - no
@@ -37,6 +48,22 @@
 - not really
 - no, don;t
 - no, don't send
+- please don't send me an email
+- nothing, that would be it.
+- none, it is [only me](people:0)
+- that's all.
+- that would be it.
+- nothing else.
+- that would be it, nothing else
+- nothing else, bye
+- no, not right now.
+- no, thanks
+- nothing else
+- no, not needed
+- no thanks
+- no, don't need that
+- not needed
+- no, that would be it
 
 ## intent:thank
 - thanks
@@ -51,6 +78,10 @@
 - thank you
 - thank you so much.
 - thanks, bye.
+- thank you.
+- tahnk you
+- ok, thanks
+- thanks.
 
 ## intent:goodbye
 - bye
@@ -61,6 +92,11 @@
 - farewell
 - Bye bye
 - have a good one
+- thanks, good bye
+- thanks, that would be all
+- thank you, bye
+- thank you, bye.
+- thank you. bye bye
 
 ## intent:greet
 - yo
@@ -77,6 +113,7 @@
 - hey bot
 - Hi
 - hello there
+- helo
 
 ## intent:restaurant_search
 - i'm looking for a place to eat
@@ -296,9 +333,68 @@
 - [12 friends](people) will join me
 - find me a restaurant in [New York](location)
 - ok, then find something in [Delhi](location)
-- [Italian](cuisine)
 - [6 people](people)
-- [Low](price:low)
+- get me a [low end](price:low) [australian](cuisine) restaurant in [Australia](location) for [8 people](people)
+- okay, search for [Biryani](cuisine) in [Bengaluru](location:bangalore)
+- I want a [north indian](cuisine) restaurant in [Delhi](location)
+- [20 people](people)
+- could you search for some [mexican](cuisine) restaurants in [Belgaum](location)
+- [30 friends](people) will be joining the reunion party
+- get me a restaurant in [mid range](price:mid) for [9 people](people) which serves [Brazillian](cuisine) food in [Bengaluru](location:bangalore)
+- find me a [mid range](price:mid) [italian](cuisine) restaurant in [bangalore](location)
+- around [30 people](people) will be joining me in the party
+- hi, get me a restaurant please
+- I'd like to eat in [Germany](location) today
+- ok, how about [australia](location) ?
+- hmm.. do you operate in [Agra](location) ?
+- [only me](people:0)
+- hi, find me [mid range](price:mid) restaurants in [Dharwar](location)
+- ok, find in [Chennai](location) then
+- I'd like to have [arabian](cuisine)
+- could you search some restaurants in [Hubli](location) as well
+- ok, how about [Ajmer](location) ?
+- [just me](people:0)
+- get me a restaurant
+- [Mysuru](location:Mysore)
+- [5](people)
+- find me a [high end](price:high) restaurant in [Bijnor](location)
+- ok, in [Trivandrum](location)
+- ok, in [trivandrum](location:thiruvananthapuram) then
+- find me some restaurants
+- [Hubli](location:hubli-dharwad) is the city I am looking for
+- in [Dharwad](location:hubli-dharwad)
+- hi, help me with a restaurant please
+- in [bokaro steel city](location)
+- get me a list of places to eat lunch
+- in [durg](location)
+- in [durg](location:durg-bhilai nagar)
+- [Biryani](cuisine)
+- [9 friends](people)
+- find me a good [cafe](cuisine)
+- in [vasai](location:vasai-virar city)
+- there would be [12 freinds](people)
+- find me a restaurant in [vasai](location:vasai-virar city)
+- can you also search for some restaurants in [virar](location:vasai-virar city)
+- find me a [bakery](cuisine) in [Lucknow](location)
+- yeah, find me some restaurant in [Kozikode](location:kozhikode)
+- in [Pune](location)
+- get me good places to eat
+- in [dharwad](location)
+- I would really like to search for some restaurants
+- in [guwahti](location:Guwahati)
+- [300 to 700](price:mid)
+- in [Bhiwandi](location)
+- book me a place to eat
+- [bhiwandi](location)
+- around [8 people](people)
+- find me a good restaurant for [6 people](people)
+- in [jaisalmer](location)
+- ok, in [jalandhar](location) ?
+- find me a restaurant in [kanpur](location)
+- I want [Biryani](cuisine) for [4 people](people)
+- in [ludhiana](location)
+- [North Indian](cuisine)
+- get me a [low end](price:low) restaurant
 
 ## intent:send_email
 - [a.t@gmail.com](email)
@@ -317,6 +413,45 @@
 - yes send it to [someemail123@sommailbox.com](email)
 - sure, it is [hithere@gothere.com](email)
 - [yin@yang.com](email)
+- yes sure, send it to [anshuman01.tripathi@gmail.com](email)
+- [anshuman01.tripathi@gmail.com](email)
+- yes send it to [anshuman01.tripathi@gmail.com](email)
+- my email is [anshuman01.tripathi@gmail.com](email)
+- yes, send it to [anshuman01.tripathi@gmail.com](email)
+- sure, send it to [anshuman01.tripathi@gmail.com](email)
+- it is [anshuman01.tripathi@gmail.com](email)
+- yes, send it over to [anshuman01.tripathi@gmail.com](email)
+- [anshuman01.tripathi@gmail.com](email) is my email
+
+## intent:unknown
+- r@
+- top@a
+- fa s
+- blah blah
+- chik
+- sd adaf
+- get me a taxi
+- book a plumber
+- book me a television
+- find me a taci please
+
+## intent:estimate_calculation
+- [a-zA-Z ]*[\d]+[a-zA-Z ]*
+- [\d]+
+- [3](people)
+- [7](people)
+- [8](people)
+- [12](people)
+- yes, please make a meal estimation
+- can you please estimate my meal budget
+- around [10 people](people) would be joining me
+
+## synonym:0
+- only me
+- just me
+- no one
+- no one else
+- none
 
 ## synonym:4
 - four
@@ -330,6 +465,12 @@
 ## synonym:Delhi
 - New Delhi
 
+## synonym:Guwahati
+- guwahti
+
+## synonym:Mysore
+- Mysuru
+
 ## synonym:bangalore
 - Bengaluru
 - Bangalore
@@ -339,11 +480,24 @@
 - Chinese
 - Chines
 
+## synonym:durg-bhilai nagar
+- durg
+- bhillai
+- bhilai
+
 ## synonym:high
 - High
 - >700
 - I'd like
 - high end
+- 1000
+
+## synonym:hubli-dharwad
+- Hubli
+- Dharwad
+
+## synonym:kozhikode
+- Kozikode
 
 ## synonym:low
 - Low
@@ -353,16 +507,20 @@
 ## synonym:mid
 - moderate
 - Moderate
+- mid range
+- 300 to 700
+- 300 - 700
+- 300-700
 
-## synonym:vegetarian
-- veggie
-- vegg
+## synonym:thiruvananthapuram
+- trivandrum
+
+## synonym:vasai-virar city
+- vasai
+- virar
 
 ## regex:greet
 - hey[^\s]*
-
-## regex:pincode
-- [0-9]{6}
 
 ## regex:send_email
 - [^\s]*[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+[^\s]*
