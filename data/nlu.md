@@ -33,6 +33,8 @@
 - yes please
 - ok, please do
 - yes, send it
+- ok, send it
+- yes, send it over to me
 - do send me an email
 - yes I would like that
 
@@ -77,6 +79,8 @@
 - no, I don't want an estimation
 - nothing, bye
 - no, I don't need it
+- no, thank you
+- never mind
 - no. thank you
 - no thank you
 - that's all
@@ -99,17 +103,19 @@
 - ok, thanks
 - thanks.
 - thank you so much
+- thank you and keep it up
+- thanks to you
+- thank you for your service
 - you've been great
 
 ## intent:goodbye
-- Bye
-- Goodbye
-- Good bye
-- Bubye
-- Farewell
+- bye
+- goodbye
+- good bye
+- stop
+- end
+- farewell
 - Bye bye
-- Have a good one
-- Have a great time
 - have a good one
 - thanks, good bye
 - thanks, that would be all
@@ -121,6 +127,13 @@
 - thank you. bye
 
 ## intent:greet
+- yo
+- hola
+- hi there
+- hey
+- howdy
+- hey there
+- hello
 - Yo
 - Hola
 - Hi there
@@ -137,6 +150,11 @@
 - Hello foodie
 - How may I help you?
 - hi
+- good morning
+- good evening
+- dear sir
+- hey bot
+- Hi
 - hello there
 - helo
 - hello bot
@@ -344,14 +362,6 @@
 - I'm looking at [Bhiwandi](location)
 - get me a restaurant for [5 people](people)
 - search me a [low end](price:low) [arabian](cuisine) restaurant in [Bhilai](location) for [5 people](people)
-- let's eat outside today
-- [low](price) budget
-- [5](people)
-- [italian](cuisine)
-- Let's go out for dinner
-- [moderate](price:mid)
-- [4](people)
-- [South](cuisine:South Indian)
 - find me a restaurant in [Rishikesh](location)
 - find me a restaurant in [Pune](location)
 - I'd like to eat [Biryani](cuisine)
@@ -390,6 +400,7 @@
 - [just me](people:0)
 - get me a restaurant
 - [Mysuru](location:Mysore)
+- [5](people)
 - find me a [high end](price:high) restaurant in [Bijnor](location)
 - ok, in [Trivandrum](location)
 - ok, in [trivandrum](location:thiruvananthapuram) then
@@ -458,10 +469,37 @@
 - I want to eat [arabian](cuisine)
 - I will be having a group of [4](people)
 - find me an [awadhi](cuisine) restaurant in [Ajmer](location) with [low pricing](price:low)
+- hi, find me a restaurant for [7 people](people)
+- in [patiala](location)
+- ok, then in [patna](location)
+- get me a [BBQ](cuisine)
+- ok, get me another restaurant in [Bengaluru](location:bangalore) for [Chinese](cuisine:chinese)
+- get me a restaurant for [5](people)
+- in [raigarh](location)
+- ok, then in [Mysore](location)
+- can you find for me a juice bar nearby
+- [trivandrum](location:thiruvananthapuram)
 - I want to eat [chinese](cuisine) on a [low budget](price:low) today
 - [Palakkad](location)
 - wanna eat some [arabian](cuisine) food today
 - [mexican](cuisine)
+- can i find a pub in [kozhikode](location)
+- [american](cuisine)
+- [4 people](people)
+- could you find me a pub in [pune](location)
+- could you let me know how much it will cost for [5 people](people) to eat in [mysore](location)
+- [north](cuisine:north indian)
+- get me [south](cuisine:south indian) indian food in [jammu](location) and kashmir
+- [italian](cuisine) food in [gandhinagar](location)
+- [chandigarh](location)
+- find a pub for mr in [hydrabad](location)
+- find me a pub in [hydrabad](location:hyderabad)
+- find me vanilla [icecream](cuisine) in [bangalore](location)
+- [south](cuisine:south indian) food
+- [Moderate](price:mid)
+- find me some restaurant in [itanagar](location)
+- in [agra](location) i want [south](cuisine:south indian) indian food
+- [below 300](price:low)
 - anywhere in [Mumbai](location)
 - some [moderate pricing](price:mid)
 - for [3 persons](people)
@@ -495,6 +533,11 @@
 - [anshuman01.tripathi@gmail.com](email) is my email
 - at [anshuman01.tripathi@gmail.com](email)
 - yes, send me that email
+- no no, send it to [someoneelse@something.com](email)
+- ok, send me that email
+- [meenakshy27i@gmail.com](email)
+- ok, my email id is [meenakshy27i@gmail.com](email)
+- [meenakshy27i@gmail.com](email)
 - [vivekav.96@gmail.com](email)
 
 ## intent:unknown
@@ -509,6 +552,9 @@
 - book me a television
 - find me a taci please
 - find me a rental bike
+- is there any trasportation from mysore to [bangalore](location)
+- you need to remember it
+- I already told you
 
 ## intent:estimate_calculation
 - [a-zA-Z ]*[\d]+[a-zA-Z ]*
@@ -529,6 +575,11 @@
 - calculate the estimate that you were talking about
 - could you calculate that estimate
 - around [8](people)
+- please tell me the estimate
+- same, [7 people](people)
+- could you calculate the estimate
+- [2](people)
+- [5](people)
 
 ## synonym:0
 - only me
@@ -601,6 +652,12 @@
 - 300 to 700
 - 300 - 700
 - 300-700
+
+## synonym:north indian
+- north
+
+## synonym:south indian
+- south
 
 ## synonym:thiruvananthapuram
 - trivandrum
