@@ -38,6 +38,11 @@ intents:
 responses:
   utter_acknowledgement:
   - text: alright, gotchya.
+  - text: ok.
+  - text: got you.
+  - text: ok, understood.
+  - text: alright.
+  - text: that is fine.
   utter_ask_cuisine:
   - buttons:
     - payload: Chinese
@@ -61,6 +66,8 @@ responses:
   - text: Should I send you details of all the restaurants on email?
   utter_ask_estimateCalculation:
   - text: I can help with the meal estimation, would you like that?
+  - text: Shall I estimate the expenditure for you ?
+  - text: May I estimate the total cost of this meal for you ?
   utter_ask_howcanhelp:
   - text: Can I be of service in any other matter?
   - text: what else do you require today ?
