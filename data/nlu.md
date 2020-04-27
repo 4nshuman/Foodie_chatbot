@@ -29,6 +29,10 @@
 - yeah sure
 - yes, please
 - sure, please do send it
+- yes, ok
+- yes please
+- ok, please do
+- yes, send it
 
 ## intent:deny
 - no
@@ -64,6 +68,13 @@
 - no, don't need that
 - not needed
 - no, that would be it
+- no, not needed.
+- no thanks.
+- no need
+- nah, nothing else.
+- no, I don't want an estimation
+- nothing, bye
+- no, I don't need it
 
 ## intent:thank
 - thanks
@@ -82,6 +93,7 @@
 - tahnk you
 - ok, thanks
 - thanks.
+- thank you so much
 
 ## intent:goodbye
 - Bye
@@ -98,6 +110,9 @@
 - thank you, bye
 - thank you, bye.
 - thank you. bye bye
+- nothing else is needed. good bye
+- thank you so much. good bye now.
+- thank you. bye
 
 ## intent:greet
 - Yo
@@ -108,6 +123,7 @@
 - Hey Foodie
 - Hello
 - Hi
+<<<<<<< HEAD
 - Good morning
 - Good evening
 - At your service, sir
@@ -116,6 +132,11 @@
 - Hello foodie
 - How may I help you?
 - hi
+=======
+- hello there
+- helo
+- hello bot
+>>>>>>> master
 
 ## intent:restaurant_search
 - i'm looking for a place to eat
@@ -405,6 +426,7 @@
 - find me a restaurant in [kanpur](location)
 - I want [Biryani](cuisine) for [4 people](people)
 - in [ludhiana](location)
+<<<<<<< HEAD
 - food
 - [kalamassery](location)
 - [Ernakulam](location)
@@ -413,6 +435,36 @@
 - [low](price) budget
 - [5 persons](people)
 - [Chinese](cuisine:chinese)
+=======
+- I am looking for a restaurant in [Kannur](location)
+- [>=700](price:high)
+- ok, can you find another restaurant
+- around [15 people](people) will join me
+- find me a good restaurant
+- in [Kanpur](location), a [chinese](cuisine) restaurant please.
+- around [4 friends](people)
+- hello, find me a good [Italian](cuisine) restaurant
+- in [Chandigarh](location)
+- find me a restaurant in [Amritsar](location)
+- around [9 people](people)
+- please find me a [Italian](cuisine) restaurant
+- in [Bangalore](location:bangalore)
+- search me a restaurant for [7 people](people)
+- find one in [amravati](location)
+- search me a [bakery](cuisine)
+- in [Aligarh](location)
+- get me a restaurant for [6 people](people)
+- in [aligarh](location)
+- [BBQ](cuisine)
+- ok, could you search for another cuisine ?
+- hello, find me a restaurant in [ajmer](location)
+- i would like to eat [Biryani](cuisine)
+- search me a restaurant in [agra](location)
+- I want to eat [arabian](cuisine)
+- I will be having a group of [4](people)
+- find me an [awadhi](cuisine) restaurant in [Ajmer](location) with [low pricing](price:low)
+- [South Indian](cuisine)
+>>>>>>> master
 
 ## intent:send_email
 - [a.t@gmail.com](email)
@@ -441,6 +493,9 @@
 - it is [anshuman01.tripathi@gmail.com](email)
 - yes, send it over to [anshuman01.tripathi@gmail.com](email)
 - [anshuman01.tripathi@gmail.com](email) is my email
+- at [anshuman01.tripathi@gmail.com](email)
+- yes, send me that email
+- [anshuman01.tripathi@gmail.com](email)
 
 ## intent:unknown
 - r@
@@ -453,6 +508,7 @@
 - book a plumber
 - book me a television
 - find me a taci please
+- find me a rental bike
 
 ## intent:estimate_calculation
 - [a-zA-Z ]*[\d]+[a-zA-Z ]*
@@ -464,6 +520,15 @@
 - yes, please make a meal estimation
 - can you please estimate my meal budget
 - around [10 people](people) would be joining me
+- ok, can you also please estimate the meal price
+- could you also estimate the price for this meal
+- yes, please estimate the cost as well
+- me and my family of [3](people)
+- ok, could you also estimate the price
+- around [5 people](people)
+- calculate the estimate that you were talking about
+- could you calculate that estimate
+- around [8](people)
 
 ## synonym:0
 - only me
@@ -512,6 +577,7 @@
 - >700
 - I'd like
 - high end
+- >=700
 - 1000
 
 ## synonym:hubli-dharwad
