@@ -2115,3 +2115,52 @@
 * deny
     - utter_goodbye
     - action_restart
+
+## interactive_story_1
+* greet
+    - utter_greet
+* restaurant_search
+    - utter_ask_location
+* restaurant_search{"location": "kalamassery"}
+    - slot{"location": "kalamassery"}
+    - actions_VerifyLocation
+    - slot{"location": null}
+    - slot{"location_ok": false}
+    - utter_ask_location
+* restaurant_search{"location": "Ernakulam"}
+    - slot{"location": "Ernakulam"}
+    - actions_VerifyLocation
+    - slot{"location": null}
+    - slot{"location_ok": false}
+* restaurant_search{"location": "Kakkanad"}
+    - slot{"location": "Kakkanad"}
+    - actions_VerifyLocation
+    - slot{"location": null}
+    - slot{"location_ok": false}
+* restaurant_search{"location": "Kochi"}
+    - slot{"location": "Kochi"}
+    - actions_VerifyLocation
+    - slot{"location_ok": true}
+    - utter_ask_price
+* restaurant_search{"price": "low"}
+    - slot{"price": "low"}
+    - actions_VerifyBudget
+    - slot{"budget_ok": true}
+    - utter_ask_estimateCalculation
+* affirm
+    - utter_ask_numberofpeople
+* restaurant_search{"people": "5 persons"}
+    - slot{"people": "5 persons"}
+    - utter_ask_cuisine
+* restaurant_search{"cuisine": "chinese"}
+    - slot{"cuisine": "chinese"}
+    - actions_VerifyCuisine
+    - slot{"cuisine_ok": true}
+    - action_search_restaurants
+    - slot{"restaurant_exist": false}
+    - action_calculate_estimate
+    - utter_ask_email_permission
+* deny
+    - utter_acknowledgement
+    - utter_goodbye
+    - action_restart

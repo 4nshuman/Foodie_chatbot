@@ -112,10 +112,10 @@
 - Good evening
 - At your service, sir
 - Hey there
-- Hi
 - Hello there
 - Hello foodie
 - How may I help you?
+- hi
 
 ## intent:restaurant_search
 - i'm looking for a place to eat
@@ -405,8 +405,14 @@
 - find me a restaurant in [kanpur](location)
 - I want [Biryani](cuisine) for [4 people](people)
 - in [ludhiana](location)
-- [North Indian](cuisine)
-- get me a [low end](price:low) restaurant
+- food
+- [kalamassery](location)
+- [Ernakulam](location)
+- [Kakkanad](location)
+- [Kochi](location)
+- [low](price) budget
+- [5 persons](people)
+- [Chinese](cuisine:chinese)
 
 ## intent:send_email
 - [a.t@gmail.com](email)
@@ -483,6 +489,9 @@
 
 ## synonym:Mysore
 - Mysuru
+
+## synonym:South Indian
+- South
 
 ## synonym:bangalore
 - Bengaluru

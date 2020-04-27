@@ -25,13 +25,13 @@ entities:
 - people
 - price
 intents:
-- estimate_calculation
-- affirm
-- thank
-- deny
-- greet
-- send_email
 - restaurant_search
+- greet
+- deny
+- affirm
+- estimate_calculation
+- thank
+- send_email
 - unknown
 - goodbye
 - stop
@@ -83,12 +83,12 @@ responses:
   utter_ask_numberofpeople:
     - text: Ok, so how many people are you expecting to join you on meal ?(meal estimates
         will be sent over mail)
-  - text: What would be the number of friends joining you ?(meal estimates will be
-      sent over mail)
-  - text: How many people would join you on this meal ?(meal estimates will be sent
-      over mail)
-  - text: How many persons would join you on this meal ?(meal estimates will be sent
-      over mail)
+    - text: What would be the number of friends joining you ?(meal estimates will be
+        sent over mail)
+    - text: How many people would join you on this meal ?(meal estimates will be sent
+        over mail)
+    - text: How many persons would join you on this meal ?(meal estimates will be sent
+        over mail)
   utter_ask_price:
   - buttons:
     - payload: Low

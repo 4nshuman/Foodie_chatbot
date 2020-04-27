@@ -18,12 +18,16 @@ meal_estimate = {}
 
 
 class ActionSearchRestaurants(Action):
+
+    def __init__(self):
+        config = {'user_key': '5faeea4aac0526ad50539c0b87a5fd15'}
+        self.zomato = zomatopy.initialize_app(config)
+
     def name(self):
         return 'action_search_restaurants'
 
     def run(self, dispatcher, tracker, domain):
-        config = {'user_key': '5faeea4aac0526ad50539c0b87a5fd15'}
-        zomato = zomatopy.initialize_app(config)
+
         # Get location from slot
         location = tracker.get_slot('location')
 
@@ -41,13 +45,14 @@ class ActionSearchRestaurants(Action):
         else:
             cost_min = 700
 
-        results, lat, lon = self.get_additional_location_details(location, zomato)
+        results, lat, lon = self.get_additional_location_details(location)
 
         if results == 0:
             # Zomato API could not find details for this location.
             restaurant_exist = False
             dispatcher.utter_message(
-                'I am sorry, no restaurants found in this location.' + '\n' + 'Check the location name or try with a different location')
+                'I am sorry, no restaurants found in this location.\n' +
+                'Check the location name or try with a different location')
         else:
             restaurant_result_dictionary = self.get_restaurants(lat, lon, cost_min, cost_max, cuisine)
 
@@ -82,10 +87,9 @@ class ActionSearchRestaurants(Action):
                     'Here are our picks !' + '\n ==================================================== \n' + response + '\n ==================================================== \n \n')
         return [SlotSet('restaurant_exist', restaurant_exist)]
 
-    @staticmethod
-    def get_additional_location_details(location, zomato):
+    def get_additional_location_details(self, location):
         # Get location details including latitude and longitude
-        location_detail = zomato.get_location(location, 1)
+        location_detail = self.zomato.get_location(location, limit=1)
         d1 = json.loads(location_detail)
         lat = 0
         lon = 0
@@ -103,15 +107,13 @@ class ActionSearchRestaurants(Action):
         executer = ThreadPoolExecutor(max_workers=10)
         # Since the API allows to fetch 20 results at a time, we're gonna repeat the fetch to get 100 records
         for res_key in range(0, 101, 20):
-            executer.submit(retrieve_restaurant, lat, lon, cuisines_dict, cuisine, res_key,
+            executer.submit(retrieve_restaurant, lat, lon, cuisines_dict.get(cuisine), res_key,
                             restaurant_result_dictionary)
         executer.shutdown()
         return restaurant_result_dictionary
 
 
 class VerifyLocation(Action):
-    TIER_1 = []
-    TIER_2 = []
 
     def __init__(self):
         self.TIER_1 = ['ahmedabad', 'bangalore', 'chennai',
@@ -260,7 +262,7 @@ class ActionSendEmail(Action):
             email_message_content += '\t Click this link to go to the location on maps : https://www.google.com/maps/@' + \
                                      restaurant['restaurant']['location']['latitude'] + ',' + \
                                      restaurant['restaurant']['location']['longitude'] + ',15z \n \n'
-        email_message_content = email_message_content + '\n Please do let us know of your feedback by replying to this mail.\n'
+        email_message_content += '\n Please do let us know of your feedback by replying to this mail.\n'
 
         # Open SMTP connection to our email id.
         gmail_smtp = smtplib.SMTP('smtp.gmail.com', 587)
@@ -284,15 +286,23 @@ class ActionSendEmail(Action):
         return []
 
 
-def retrieve_restaurant(lat, lon, cuisines_dict, cuisine, res_key, restaurant_result_dictionary):
+def retrieve_restaurant(lat, lon, cuisine_id, res_key, restaurant_result_dictionary):
     base_url = 'https://developers.zomato.com/api/v2.1/'
-    headers = {'Accept': 'application/json',
-               'user-key': '5faeea4aac0526ad50539c0b87a5fd15'}
+    headers = {
+        'Accept': 'application/json',
+        'user-key': '5faeea4aac0526ad50539c0b87a5fd15'
+    }
+    params = {
+        'lat': str(lat),
+        'lon': str(lon),
+        'cuisines': str(cuisine_id),
+        'start': str(res_key),
+        'count': 20
+    }
     try:
-        results = (requests.get(base_url + 'search?' + '&lat=' + str(lat) + '&lon=' + str(lon) + '&cuisines=' + str(
-            cuisines_dict.get(cuisine)) + '&start=' + str(res_key) + '&count=20', headers=headers).content).decode(
-            'utf-8')
-    except:
+        results = requests.get(base_url + 'search', params=params, headers=headers)
+        results = results.json()
+        restaurant_result_dictionary.extend(results['restaurants'])
+    except Exception as e:
+        print('An error occurred while fetching restaurants - ', e)
         return
-    d = json.loads(results)
-    restaurant_result_dictionary.extend(d['restaurants'])
