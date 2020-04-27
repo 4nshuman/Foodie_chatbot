@@ -94,7 +94,7 @@ class ActionSearchRestaurants(Action):
         # Since the API allows to fetch 20 results at a time, we're gonna repeat the fetch to get 100 records
 	    for res_key in range(0, 101, 20):
 	        executer.submit(retrieve_restaurant, lat, lon, cuisines_dict, cuisine, res_key, restaurant_result_dictionary)
-	    executer.shutdown()
+	    executer.shutdown(wait=True)
 	    return restaurant_result_dictionary
     
 class VerifyLocation(Action):
@@ -185,8 +185,8 @@ class ActionCalculateMealEstimate(Action):
             restaurant_id = restaurant['restaurant']['id']
             try:
                 if(people>1):
-                    meal_estimate[restaurant_id] = restaurant['restaurant']['average_cost_for_two']*people
-                    dispatcher.utter_message('your meal at '+ restaurant['restaurant']['name'] +' would cost approx. '+str(meal_estimate[restaurant_id]/2))
+                    meal_estimate[restaurant_id] = (restaurant['restaurant']['average_cost_for_two']/2)*people
+                    dispatcher.utter_message('your meal at '+ restaurant['restaurant']['name'] +' would cost approx. '+str(meal_estimate[restaurant_id]))
                 else:
                     meal_estimate[restaurant_id] = restaurant['restaurant']['average_cost_for_two']/2
             except:
@@ -212,11 +212,11 @@ class ActionSendEmail(Action):
         email_message_content = 'Hello '+ to_email.split('@')[0] +',\n Here are the top ' + cuisine.capitalize() + ' restaurants in ' + str(location).capitalize() + '. \n \n'
         for index,restaurant in enumerate(restaurant_email_list):
             email_message_content += str(index+1) + '. '+ restaurant['restaurant']['name'] + '\n'
-            email_message_content += '\t Address : '+ restaurant['restaurant']['location']['address']
+            email_message_content += '\t Address : '+ restaurant['restaurant']['location']['address']+'. \n'
             email_message_content += '\t Timings : the restaurant is open from '+ restaurant['restaurant']['timings'] +'. \n'
             email_message_content += '\t The ratings are : ' + str(restaurant['restaurant']['user_rating']['aggregate_rating']) + '\n'
             email_message_content += '\t Here the average cost for 2 people is '+restaurant['restaurant']['currency']+str(restaurant['restaurant']['average_cost_for_two'])+ '. \n'
-            if(len(meal_estimate)):
+            if(meal_estimate and len(meal_estimate)):
                 email_message_content += '\t As per our chat you were going out with '+people+' people. So you\'ll be spending around '+ restaurant['restaurant']['currency'] + str(meal_estimate[restaurant['restaurant']['id']]) +'. \n'
             email_message_content += '\t Click this link to go to the location on maps : https://www.google.com/maps/@'+restaurant['restaurant']['location']['latitude']+','+restaurant['restaurant']['location']['longitude']+',15z \n \n'
         email_message_content = email_message_content+ '\n Please do let us know of your feedback by replying to this mail.\n'
