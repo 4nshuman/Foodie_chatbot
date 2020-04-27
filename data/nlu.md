@@ -96,13 +96,14 @@
 - thank you so much
 
 ## intent:goodbye
-- bye
-- goodbye
-- good bye
-- stop
-- end
-- farewell
+- Bye
+- Goodbye
+- Good bye
+- Bubye
+- Farewell
 - Bye bye
+- Have a good one
+- Have a great time
 - have a good one
 - thanks, good bye
 - thanks, that would be all
@@ -114,22 +115,28 @@
 - thank you. bye
 
 ## intent:greet
-- yo
-- hola
-- hi there
-- hey
-- howdy
-- hey there
-- hello
-- hi
-- good morning
-- good evening
-- dear sir
-- hey bot
+- Yo
+- Hola
+- Hi there
+- Hey
+- Howdy
+- Hey Foodie
+- Hello
 - Hi
+<<<<<<< HEAD
+- Good morning
+- Good evening
+- At your service, sir
+- Hey there
+- Hello there
+- Hello foodie
+- How may I help you?
+- hi
+=======
 - hello there
 - helo
 - hello bot
+>>>>>>> master
 
 ## intent:restaurant_search
 - i'm looking for a place to eat
@@ -334,6 +341,16 @@
 - I'm looking at [Bhiwandi](location)
 - get me a restaurant for [5 people](people)
 - search me a [low end](price:low) [arabian](cuisine) restaurant in [Bhilai](location) for [5 people](people)
+- let's eat outside today
+- [Kochi](location)
+- [low](price) budget
+- [5](people)
+- [italian](cuisine)
+- Let's go out for dinner
+- [Coimbatore](location)
+- [moderate](price:mid)
+- [4](people)
+- [South](cuisine:South Indian)
 - find me a restaurant in [Rishikesh](location)
 - find me a restaurant in [Pune](location)
 - I'd like to eat [Biryani](cuisine)
@@ -409,6 +426,16 @@
 - find me a restaurant in [kanpur](location)
 - I want [Biryani](cuisine) for [4 people](people)
 - in [ludhiana](location)
+<<<<<<< HEAD
+- food
+- [kalamassery](location)
+- [Ernakulam](location)
+- [Kakkanad](location)
+- [Kochi](location)
+- [low](price) budget
+- [5 persons](people)
+- [Chinese](cuisine:chinese)
+=======
 - I am looking for a restaurant in [Kannur](location)
 - [>=700](price:high)
 - ok, can you find another restaurant
@@ -437,6 +464,7 @@
 - I will be having a group of [4](people)
 - find me an [awadhi](cuisine) restaurant in [Ajmer](location) with [low pricing](price:low)
 - [South Indian](cuisine)
+>>>>>>> master
 
 ## intent:send_email
 - [a.t@gmail.com](email)
@@ -455,6 +483,7 @@
 - yes send it to [someemail123@sommailbox.com](email)
 - sure, it is [hithere@gothere.com](email)
 - [yin@yang.com](email)
+- [vivek@vivek.com](email)
 - yes sure, send it to [anshuman01.tripathi@gmail.com](email)
 - [anshuman01.tripathi@gmail.com](email)
 - yes send it to [anshuman01.tripathi@gmail.com](email)
@@ -525,6 +554,9 @@
 
 ## synonym:Mysore
 - Mysuru
+
+## synonym:South Indian
+- South
 
 ## synonym:bangalore
 - Bengaluru

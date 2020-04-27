@@ -35,6 +35,190 @@
 * thank
     - utter_welcome
     - utter_ask_howcanhelp
+<<<<<<< HEAD
+* goodbye
+    - utter_goodbye
+    - action_restart
+
+## complete path 2
+* greet
+    - utter_greet
+* restaurant_search
+    - utter_ask_location
+* restaurant_search{"location": "delhi"}
+    - slot{"location": "delhi"}
+    - actions_VerifyLocation
+    - slot{"location": "delhi"}
+    - slot{"location_ok": true}
+    - utter_ask_cuisine
+* restaurant_search{"cuisine": "North Indian"}
+    - slot{"cuisine": "North Indian"}
+    - actions_VerifyCuisine
+    - slot{"cuisine": "North Indian"}
+    - slot{"cuisine_ok": true}
+    - action_search_restaurants
+    - utter_goodbye
+    - action_restart
+
+## complete path 3
+* greet
+    - utter_greet
+* restaurant_search
+    - utter_ask_location
+* restaurant_search{"location": "italy"}
+    - slot{"location": "italy"}
+    - actions_VerifyLocation
+    - slot{"location": null}
+    - slot{"location_ok": false}
+    - utter_ask_cuisine
+* restaurant_search{"cuisine": "chinese"}
+    - slot{"cuisine": "chinese"}
+    - actions_VerifyCuisine
+    - slot{"cuisine": "chinese"}
+    - slot{"cuisine_ok": true}
+    - action_search_restaurants
+* goodbye
+    - utter_goodbye
+    - action_restart
+
+## complete path 4
+* greet
+    - utter_greet
+* restaurant_search
+    - utter_ask_location
+* restaurant_search{"location": "delhi"}
+    - slot{"location": "delhi"}
+    - actions_VerifyLocation
+    - slot{"location": "delhi"}
+    - slot{"location_ok": true}
+    - utter_ask_cuisine
+* restaurant_search{"cuisine": "chinese"}
+    - slot{"cuisine": "chinese"}
+    - actions_VerifyCuisine
+    - slot{"cuisine": "chinese"}
+    - slot{"cuisine_ok": true}
+    - action_search_restaurants
+    - slot{"location": "delhi"}
+    - export
+
+
+## interactive_story_1
+* greet
+    - utter_greet
+* restaurant_search{"location": "mumbai"}
+    - slot{"location": "mumbai"}
+    - actions_VerifyLocation
+    - slot{"location": "mumbai"}
+    - slot{"location_ok": true}
+    - utter_ask_cuisine
+* restaurant_search{"cuisine": "chinese"}
+    - slot{"cuisine": "chinese"}
+    - actions_VerifyCuisine
+    - slot{"cuisine": "chinese"}
+    - slot{"cuisine_ok": true}
+    - action_search_restaurants
+    - slot{"location": "mumbai"}
+* stop
+
+## interactive_story_1
+* greet
+    - utter_greet
+* restaurant_search
+    - utter_ask_location
+* restaurant_search{"location": "mumbai"}
+    - slot{"location": "mumbai"}
+    - actions_VerifyLocation
+    - slot{"location": "mumbai"}
+    - slot{"location_ok": true}
+    - utter_ask_cuisine
+* restaurant_search{"cuisine": "Italian"}
+    - slot{"cuisine": "Italian"}
+    - actions_VerifyCuisine
+    - slot{"cuisine": "Italian"}
+    - slot{"cuisine_ok": true}
+    - action_search_restaurants
+    - slot{"location": "mumbai"}
+
+## interactive_story_1
+* greet
+    - utter_greet
+* restaurant_search{"cuisine": "chinese", "location": "delhi"}
+    - slot{"cuisine": "chinese"}
+    - actions_VerifyCuisine
+    - slot{"cuisine": "chinese"}
+    - slot{"cuisine_ok": true}
+    - slot{"location": "delhi"}
+    - actions_VerifyLocation
+    - slot{"location": "delhi"}
+    - slot{"location_ok": true}
+    - action_search_restaurants
+    - slot{"location": "delhi"}
+* affirm
+    - utter_goodbye
+    - action_restart
+    
+    
+## interactive_story_1
+* greet
+    - utter_greet
+* restaurant_search{"cuisine": "italian", "location": "mumbai"}
+    - slot{"cuisine": "italian"}
+    - actions_VerifyCuisine
+    - slot{"cuisine": "italiani"}
+    - slot{"cuisine_ok": true}
+    - slot{"location": "mumbai"}
+    - actions_VerifyLocation
+    - slot{"location": "mumbai"}
+    - slot{"location_ok": true}
+    - action_search_restaurants
+    - slot{"location": "mumbai"}
+* affirm
+    - utter_goodbye
+    - action_restart
+
+
+## interactive_story_1
+* greet
+    - utter_greet
+* unknown
+    - utter_default
+* restaurant_search
+    - utter_ask_location
+* restaurant_search{"location": "Chennai"}
+    - slot{"location": "Chennai"}
+    - actions_VerifyLocation
+    - slot{"location": "Chennai"}
+    - slot{"location_ok": true}
+    - utter_ask_cuisine
+* restaurant_search{"cuisine": "Italian"}
+    - slot{"cuisine": "Italian"}
+    - actions_VerifyCuisine
+    - slot{"cuisine": "Italian"}
+    - slot{"cuisine_ok": true}
+    - action_search_restaurants
+    - slot{"location": "Chennai"}
+
+## interactive_story_1
+* greet
+    - utter_greet
+* restaurant_search{"location": "Pune"}
+    - slot{"location": "Pune"}
+    - actions_VerifyLocation
+    - slot{"location": "Pune"}
+    - slot{"location_ok": true}
+    - utter_ask_cuisine
+* restaurant_search{"cuisine": "South Indian"}
+    - slot{"cuisine": "South Indian"}
+    - actions_VerifyCuisine
+    - slot{"cuisine": "South Indian"}
+    - slot{"cuisine_ok": true}
+    - action_search_restaurants
+    - slot{"location": "Pune"}
+* affirm
+    - utter_goodbye
+    - action_restart
+=======
+>>>>>>> master
 
 ## interactive_story_1
 * restaurant_search{"cuisine": "burger"}
@@ -547,6 +731,50 @@
 * goodbye
     - utter_goodbye
     - action_restart
+
+## interactive_story_1
+* restaurant_search
+    - utter_ask_location
+* restaurant_search{"location": "Kochi"}
+    - slot{"location": "Kochi"}
+    - utter_ask_price
+* restaurant_search{"price": "low"}
+    - slot{"price": "low"}
+    - utter_ask_numberofpeople
+* restaurant_search{"people": "5"}
+    - slot{"people": "5"}
+    - utter_ask_cuisine
+* restaurant_search{"cuisine": "italian"}
+    - slot{"cuisine": "italian"}
+    - action_search_restaurants
+    - slot{"location": "Kochi"}
+    - utter_ask_email_permission
+* deny
+    - utter_acknowledgement
+    - utter_goodbye
+* greet
+    - utter_greet
+* greet
+    - utter_ask_howcanhelp
+* restaurant_search
+    - utter_ask_location
+* restaurant_search{"location": "Coimbatore"}
+    - slot{"location": "Coimbatore"}
+    - utter_ask_price
+* restaurant_search{"price": "mid"}
+    - slot{"price": "mid"}
+    - utter_ask_numberofpeople
+* restaurant_search{"people": "4"}
+    - slot{"people": "4"}
+    - utter_ask_cuisine
+* restaurant_search{"cuisine": "South Indian"}
+    - slot{"cuisine": "South Indian"}
+    - action_search_restaurants
+    - slot{"location": "Coimbatore"}
+    - utter_ask_email_permission
+* send_email{"email": "vivek@vivek.com"}
+    - slot{"email": "vivek@vivek.com"}
+    - action_send_email
 
 ## interactive_story_1
 * greet
@@ -1990,5 +2218,54 @@
     - slot{"email": "anshuman01.tripathi@gmail.com"}
     - action_send_email
 * goodbye
+    - utter_goodbye
+    - action_restart
+
+## interactive_story_1
+* greet
+    - utter_greet
+* restaurant_search
+    - utter_ask_location
+* restaurant_search{"location": "kalamassery"}
+    - slot{"location": "kalamassery"}
+    - actions_VerifyLocation
+    - slot{"location": null}
+    - slot{"location_ok": false}
+    - utter_ask_location
+* restaurant_search{"location": "Ernakulam"}
+    - slot{"location": "Ernakulam"}
+    - actions_VerifyLocation
+    - slot{"location": null}
+    - slot{"location_ok": false}
+* restaurant_search{"location": "Kakkanad"}
+    - slot{"location": "Kakkanad"}
+    - actions_VerifyLocation
+    - slot{"location": null}
+    - slot{"location_ok": false}
+* restaurant_search{"location": "Kochi"}
+    - slot{"location": "Kochi"}
+    - actions_VerifyLocation
+    - slot{"location_ok": true}
+    - utter_ask_price
+* restaurant_search{"price": "low"}
+    - slot{"price": "low"}
+    - actions_VerifyBudget
+    - slot{"budget_ok": true}
+    - utter_ask_estimateCalculation
+* affirm
+    - utter_ask_numberofpeople
+* restaurant_search{"people": "5 persons"}
+    - slot{"people": "5 persons"}
+    - utter_ask_cuisine
+* restaurant_search{"cuisine": "chinese"}
+    - slot{"cuisine": "chinese"}
+    - actions_VerifyCuisine
+    - slot{"cuisine_ok": true}
+    - action_search_restaurants
+    - slot{"restaurant_exist": false}
+    - action_calculate_estimate
+    - utter_ask_email_permission
+* deny
+    - utter_acknowledgement
     - utter_goodbye
     - action_restart
