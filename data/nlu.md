@@ -53,31 +53,32 @@
 - thanks, bye.
 
 ## intent:goodbye
-- bye
-- goodbye
-- good bye
-- stop
-- end
-- farewell
+- Bye
+- Goodbye
+- Good bye
+- Bubye
+- Farewell
 - Bye bye
-- have a good one
+- Have a good one
+- Have a great time
 
 ## intent:greet
-- yo
-- hola
-- hi there
-- hey
-- howdy
-- hey there
-- hello
-- hi
-- good morning
-- good evening
-- dear sir
-- hey bot
+- Yo
+- Hola
+- Hi there
+- Hey
+- Howdy
+- Hey Foodie
+- Hello
 - Hi
-- hello there
-- hello foodie
+- Good morning
+- Good evening
+- At your service, sir
+- Hey there
+- Hi
+- Hello there
+- Hello foodie
+- How may I help you?
 
 ## intent:restaurant_search
 - i'm looking for a place to eat

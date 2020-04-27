@@ -184,7 +184,7 @@
     - utter_goodbye
     
     
-## happy_path
+## interactive_story_1
 * greet
     - utter_greet
 * restaurant_search{"cuisine": "italian", "location": "mumbai"}
