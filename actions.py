@@ -111,7 +111,8 @@ class ActionSearchRestaurants(Action):
                             restaurant_result_dictionary)
         executer.shutdown(wait=True)
         return restaurant_result_dictionary
-	    
+
+
 class VerifyLocation(Action):
 
     def __init__(self):
@@ -159,21 +160,15 @@ class VerifyBudget(Action):
         cost_max = 1000
 
         error_msg = 'Sorry!! price range not supported, please re-enter.'
-        try:
-            if budget_criteria == 'low':
-                cost_max = 300
-            elif budget_criteria == 'mid':
-                cost_min = 300
-                cost_max = 700
-            elif budget_criteria == 'high':
-                cost_min = 700
-
-        except ValueError:
-            dispatcher.utter_message(error_msg)
-            return [SlotSet('price', None), SlotSet('budget_ok', False)]
-        min_dict = [0, 300, 700]
-        max_dict = [300, 700]
-        if cost_min in min_dict and (cost_max in max_dict or cost_max > 700):
+        if budget_criteria == 'low':
+            cost_max = 300
+            return [SlotSet('budget_ok', True)]
+        elif budget_criteria == 'mid':
+            cost_min = 300
+            cost_max = 700
+            return [SlotSet('budget_ok', True)]
+        elif budget_criteria == 'high':
+            cost_min = 700
             return [SlotSet('budget_ok', True)]
         else:
             dispatcher.utter_message(error_msg)
@@ -212,11 +207,13 @@ class ActionCalculateMealEstimate(Action):
         for restaurant in restaurant_email_list:
             restaurant_id = restaurant['restaurant']['id']
             try:
-                if(people>1):
-                    meal_estimate[restaurant_id] = (restaurant['restaurant']['average_cost_for_two']/2)*people
-                    dispatcher.utter_message('your meal at '+ restaurant['restaurant']['name'] +' would cost approx. '+str(meal_estimate[restaurant_id]))
+                if (people > 1):
+                    meal_estimate[restaurant_id] = (restaurant['restaurant']['average_cost_for_two'] / 2) * people
+                    dispatcher.utter_message(
+                        'your meal at ' + restaurant['restaurant']['name'] + ' would cost approx. ' + str(
+                            meal_estimate[restaurant_id]))
                 else:
-                    meal_estimate[restaurant_id] = restaurant['restaurant']['average_cost_for_two']/2
+                    meal_estimate[restaurant_id] = restaurant['restaurant']['average_cost_for_two'] / 2
             except:
                 meal_estimate[restaurant_id] = -1
         return []
@@ -237,18 +234,28 @@ class ActionSendEmail(Action):
             people = tracker.get_slot('people').split(' ')[0]
         global restaurant_email_list, meal_estimate
         # Construct the email 'subject' and the contents.
-        email_subject_line = 'You requested some ' + cuisine.capitalize() + ' restaurants in ' + str(location).capitalize()
-        email_message_content = 'Hello ' + to_email.split('@')[0] + ',\n Here are the top ' + cuisine.capitalize() + ' restaurants in ' + str(location).capitalize() + '. \n \n'
+        email_subject_line = 'You requested some ' + cuisine.capitalize() + ' restaurants in ' + str(
+            location).capitalize()
+        email_message_content = 'Hello ' + to_email.split('@')[
+            0] + ',\n Here are the top ' + cuisine.capitalize() + ' restaurants in ' + str(
+            location).capitalize() + '. \n \n'
         for index, restaurant in enumerate(restaurant_email_list):
             email_message_content += str(index + 1) + '. ' + restaurant['restaurant']['name'] + '\n'
-            email_message_content += '\t Address : ' + restaurant['restaurant']['location']['address']+ '\n'
-            email_message_content += '\t Timings : the restaurant is open from ' + restaurant['restaurant']['timings'] + '. \n'
-            email_message_content += '\t The ratings are : ' + str(restaurant['restaurant']['user_rating']['aggregate_rating']) + '\n'
-            email_message_content += '\t Here the average cost for 2 people is ' + restaurant['restaurant']['currency'] + str(restaurant['restaurant']['average_cost_for_two']) + '. \n'
-            if(meal_estimate and len(meal_estimate)):
-                email_message_content += '\t As per our chat you were going out with '+people+' people. So you\'ll be spending around '+ restaurant['restaurant']['currency'] + str(meal_estimate[restaurant['restaurant']['id']]) +'. \n'
-            email_message_content += '\t Click this link to go to the location on maps : https://www.google.com/maps/@'+restaurant['restaurant']['location']['latitude']+','+restaurant['restaurant']['location']['longitude']+',15z \n \n'
-        email_message_content = email_message_content+ '\n Please do let us know of your feedback by replying to this mail.\n'
+            email_message_content += '\t Address : ' + restaurant['restaurant']['location']['address'] + '\n'
+            email_message_content += '\t Timings : the restaurant is open from ' + restaurant['restaurant'][
+                'timings'] + '. \n'
+            email_message_content += '\t The ratings are : ' + str(
+                restaurant['restaurant']['user_rating']['aggregate_rating']) + '\n'
+            email_message_content += '\t Here the average cost for 2 people is ' + restaurant['restaurant'][
+                'currency'] + str(restaurant['restaurant']['average_cost_for_two']) + '. \n'
+            if (meal_estimate and len(meal_estimate)):
+                email_message_content += '\t As per our chat you were going out with ' + people + ' people. So you\'ll be spending around ' + \
+                                         restaurant['restaurant']['currency'] + str(
+                    meal_estimate[restaurant['restaurant']['id']]) + '. \n'
+            email_message_content += '\t Click this link to go to the location on maps : https://www.google.com/maps/@' + \
+                                     restaurant['restaurant']['location']['latitude'] + ',' + \
+                                     restaurant['restaurant']['location']['longitude'] + ',15z \n \n'
+        email_message_content = email_message_content + '\n Please do let us know of your feedback by replying to this mail.\n'
 
         # Open SMTP connection to our email id.
         gmail_smtp = smtplib.SMTP('smtp.gmail.com', 587)
